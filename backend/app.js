@@ -4,6 +4,7 @@ import { server } from './config/config.js';
 import userRouter from './routes/userRoutes.js';
 
 const app = express();
+app.use(express.json());
 
 connectDB();
 
