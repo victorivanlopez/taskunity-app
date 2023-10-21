@@ -1,18 +1,16 @@
-
 import express from 'express';
-import dotenv from 'dotenv';
 import connectDB from './config/db.js';
+import { server } from './config/config.js';
 
 const app = express();
-dotenv.config();
+
 connectDB();
 
-const PORT = process.env.PORT || 3000;
-
+// Routing 
 app.get('/', (req, res) => {
-  res.send('Hola Mundo');
+  res.json({message: 'ok'});
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
+app.listen(server.PORT, () => {
+  console.log(`Example app listening on port ${server.PORT}`)
 });
