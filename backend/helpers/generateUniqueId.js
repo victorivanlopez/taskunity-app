@@ -1,5 +1,5 @@
-import crypto from 'crypto';
+import { randomBytes } from 'node:crypto';
 
 export const generateUniqueId = (size = 32) => {
-  return crypto.randomBytes(size).toString('hex');
+  return randomBytes(size).toString('hex');
 }
