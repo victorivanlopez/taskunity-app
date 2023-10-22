@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import { generateUniqueId } from '../helpers/generateUniqueId.js';
 
 export const createUser = async (req, res) => {
 
@@ -11,6 +12,7 @@ export const createUser = async (req, res) => {
 
   try {
     const newUser = new User({ email, name, password });
+    newUser.token = generateUniqueId();
     const user = await newUser.save();
     return res.status(201).json({ user, message: 'Usuario registrado con éxito.' });
   } catch (error) {
