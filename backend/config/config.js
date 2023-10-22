@@ -9,3 +9,7 @@ export const database = {
 export const server = {
   PORT: process.env.PORT || 3000,
 };
+
+export const secret = {
+  JWT_SECRET: process.env.JWT_SECRET,
+}
