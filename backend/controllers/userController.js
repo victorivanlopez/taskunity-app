@@ -93,4 +93,24 @@ export const verifyToken = async (req, res) => {
     return res.status(404).json({ message: 'El token no es valido.' });
   }
   return res.json({ message: 'Token valido.' });
-} 
+}
+
+export const resetPassword = async (req, res) => {
+  const token = req.params.token;
+  const { password } = req.body;
+
+  const user = await User.findOne({ token });
+
+  if (!user) {
+    return res.status(404).json({ message: 'El token no es valido.' });
+  }
+
+  try {
+    user.password = password;
+    user.token = '';
+    await user.save();
+    return res.json({ message: 'Contraseña restablecida con éxito.' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Ha ocurrido un error al restablecer la contraseña.' }, error);
+  }
+}
