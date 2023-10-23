@@ -7,5 +7,6 @@ router.post('/', userController.createUser);
 router.post('/login', userController.authUser);
 router.get('/confirm/:token', userController.confirmUser);
 router.post('/forgot-password', userController.sendEmailPasswordReset);
+router.get('/forgot-password/:token', userController.verifyToken);
 
 export default router;
