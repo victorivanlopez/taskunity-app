@@ -60,8 +60,26 @@ export const confirmUser = async (req, res) => {
     user.confirmed = true;
     user.token = '';
     await user.save();
-    return res.status(201).json({ message: 'Usuario confirmado con éxito.' });
+    return res.json({ message: 'Usuario confirmado con éxito.' });
   } catch (error) {
     return res.status(500).json({ message: 'Error al confirmar el usuario.' }, error);
+  }
+}
+
+export const sendEmailPasswordReset = async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(404).json({ message: 'El correo no está registrado' });
+  }
+
+  try {
+    user.token = generateUniqueId();
+    await user.save();
+    return res.json({ message: 'Correo electrónico de recuperación de contraseña enviado con éxito.' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error al enviar el email.' }, error);
   }
 }
