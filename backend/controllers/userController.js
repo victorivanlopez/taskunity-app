@@ -114,3 +114,7 @@ export const resetPassword = async (req, res) => {
     return res.status(500).json({ message: 'Ha ocurrido un error al restablecer la contraseña.' }, error);
   }
 }
+
+export const profile = async (req, res) => {
+  res.json({ user: req.user });
+}
