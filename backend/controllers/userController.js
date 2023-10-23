@@ -46,3 +46,22 @@ export const authUser = async (req, res) => {
     return res.status(403).json({ message: 'La contraseña es incorrecta' });
   }
 }
+
+export const confirmUser = async (req, res) => {
+  const token = req.params.token;
+
+  const user = await User.findOne({ token });
+
+  if (!user) {
+    return res.status(403).json({ message: 'El token no es valido o la cuenta ya fue confirmada' });
+  }
+
+  try {
+    user.confirmed = true;
+    user.token = '';
+    await user.save();
+    return res.status(201).json({ message: 'Usuario confirmado con éxito.' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error al confirmar el usuario.' }, error);
+  }
+}
