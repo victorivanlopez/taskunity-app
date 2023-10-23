@@ -53,7 +53,7 @@ export const confirmUser = async (req, res) => {
   const user = await User.findOne({ token });
 
   if (!user) {
-    return res.status(403).json({ message: 'El token no es valido o la cuenta ya fue confirmada' });
+    return res.status(404).json({ message: 'El token no es valido o la cuenta ya fue confirmada' });
   }
 
   try {
@@ -83,3 +83,14 @@ export const sendEmailPasswordReset = async (req, res) => {
     return res.status(500).json({ message: 'Error al enviar el email.' }, error);
   }
 }
+
+export const verifyToken = async (req, res) => {
+  const token = req.params.token;
+
+  const user = await User.findOne({ token });
+
+  if (!user) {
+    return res.status(404).json({ message: 'El token no es valido.' });
+  }
+  return res.json({ message: 'Token valido.' });
+} 
