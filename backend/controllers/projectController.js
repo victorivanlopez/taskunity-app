@@ -57,3 +57,22 @@ export const updateProject = async (req, res) => {
     return res.status(404).json({ message });
   }
 }
+
+export const deleteProject = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const project = await Project.findById(id);
+    if (project.creator.toString() !== req.user._id.toString()) {
+      const { message } = new Error('No tienes acceso a este proyecto.');
+      return res.status(401).json({ message });
+    }
+
+    await project.deleteOne();
+    res.json({ message: 'Proyecto eliminado' });
+
+  } catch (error) {
+    const { message } = new Error('Proyecto no encontrado o hubo un error al eliminar.');
+    return res.status(404).json({ message });
+  }
+}
