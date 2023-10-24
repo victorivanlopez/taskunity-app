@@ -17,6 +17,24 @@ export const createProject = async (req, res) => {
     const project = await newProject.save();
     return res.status(201).json({ message: 'Proyecto creado con éxito.', project });
   } catch (error) {
-    return res.status(500).json({ message: 'Error al crear el proyecto.' });
+    const { message } = new Error('Error al crear el proyecto.');
+    return res.status(500).json({ message });
+  }
+}
+
+export const getProject = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const project = await Project.findById(id);
+    if (project.creator.toString() !== req.user._id.toString()) {
+      const { message } = new Error('No tienes acceso a este proyecto.');
+      return res.status(401).json({ message });
+    }
+    res.json(project);
+
+  } catch (error) {
+    const { message } = new Error('Proyecto no encontrado.');
+    return res.status(404).json({ message });
   }
 }
