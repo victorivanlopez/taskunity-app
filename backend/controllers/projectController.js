@@ -38,3 +38,22 @@ export const getProject = async (req, res) => {
     return res.status(404).json({ message });
   }
 }
+
+export const updateProject = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const project = await Project.findById(id);
+    if (project.creator.toString() !== req.user._id.toString()) {
+      const { message } = new Error('No tienes acceso a este proyecto.');
+      return res.status(401).json({ message });
+    }
+
+    const projectUpdated = await Project.findOneAndUpdate(project, req.body, { new: true });
+    res.json(projectUpdated);
+
+  } catch (error) {
+    const { message } = new Error('Proyecto no encontrado o hubo un error al actualizar.');
+    return res.status(404).json({ message });
+  }
+}
