@@ -7,6 +7,8 @@ const router = express.Router();
 router.post('/', checkUserAuth, taskController.createTask);
 
 router.route('/:id')
-  .get(checkUserAuth, taskController.getTask);
+  .get(checkUserAuth, taskController.getTask)
+  .put(checkUserAuth, taskController.updateTask)
+  .delete(checkUserAuth, taskController.deleteTask);
 
 export default router;
