@@ -72,3 +72,26 @@ export const updateTask = async (req, res) => {
     return res.status(500).json({ message });
   }
 }
+
+export const deleteTask = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const task = await Task.findById(id).populate('project');
+    if (!task) {
+      const { message } = new Error('Tarea no encontrada.');
+      return res.status(404).json({ message });
+    }
+    if (task.project.creator.toString() !== req.user._id.toString()) {
+      const { message } = new Error('No se tiene autorización para eliminar la tarea indicada.');
+      return res.status(403).json({ message });
+    }
+
+    await task.deleteOne();
+    res.json({ message: 'Tarea eliminada' });
+
+  } catch (error) {
+    const { message } = new Error('Error al eliminar la tarea.');
+    return res.status(500).json({ message });
+  }
+}
