@@ -43,3 +43,24 @@ export const getTask = async (req, res) => {
     }
   }
 }
+
+export const updateTask = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const task = await Task.findById(id).populate('project');
+    if (task.project.creator.toString() !== req.user._id.toString()) {
+      const { message } = new Error('No se tiene autorización para ver la tarea indicada.');
+      return res.status(403).json({ message });
+    }
+
+    const taskUpdated = await Task.findOneAndUpdate(task, req.body, { new: true });
+    res.json(taskUpdated);
+
+  } catch (error) {
+    if (error.kind === 'ObjectId') {
+      const { message } = new Error('Tarea no encontrada.');
+      return res.status(404).json({ message });
+    }
+  }
+}
