@@ -1,4 +1,5 @@
 import Project from '../models/Project.js';
+import Task from '../models/Task.js';
 
 export const getProjects = async (req, res) => {
   const projects = await Project.find().where('creator').equals(req.user._id);
@@ -31,7 +32,12 @@ export const getProject = async (req, res) => {
       const { message } = new Error('No tienes acceso a este proyecto.');
       return res.status(401).json({ message });
     }
-    res.json(project);
+
+    const tasks = await Task.find().where('project').equals(project._id);
+    res.json({
+      project,
+      tasks
+    });
 
   } catch (error) {
     const { message } = new Error('Proyecto no encontrado.');
