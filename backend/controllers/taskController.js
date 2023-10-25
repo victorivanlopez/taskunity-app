@@ -9,7 +9,7 @@ export const createTask = async (req, res) => {
 
     if (projectAssigned.creator.toString() !== req.user._id.toString()) {
       const { message } = new Error('No tienes acceso a este proyecto.');
-      return res.status(401).json({ message });
+      return res.status(403).json({ message });
     }
 
     const newTask = new Task({ name, description, priority, project });
@@ -22,6 +22,24 @@ export const createTask = async (req, res) => {
     } else {
       const { message } = new Error('Error al crear el proyecto.');
       return res.status(500).json({ message, error });
+    }
+  }
+}
+
+export const getTask = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const task = await Task.findById(id).populate('project');
+    if (task.project.creator.toString() !== req.user._id.toString()) {
+      const { message } = new Error('No se tiene autorización para ver la tarea indicada.');
+      return res.status(403).json({ message });
+    }
+    res.json(task);
+  } catch (error) {
+    if (error.kind === 'ObjectId') {
+      const { message } = new Error('Tarea no encontrada.');
+      return res.status(404).json({ message });
     }
   }
 }
