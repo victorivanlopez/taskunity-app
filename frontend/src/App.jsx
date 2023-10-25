@@ -2,7 +2,7 @@
 function App() {
   return (
     <>
-      <h1>TaskUnity</h1>
+      <h1 className="text-3xl font-bold">TaskUnity</h1>
     </>
   )
 }
