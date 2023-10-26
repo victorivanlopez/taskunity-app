@@ -1,1 +1,1 @@
-# TaskUnity MERN | MongoDB - Express - React - NodeJS
+# TaskUnity | MERN Stack - React Router DOM - Tailwind CSS - Vite
