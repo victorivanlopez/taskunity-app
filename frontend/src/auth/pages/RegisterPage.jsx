@@ -1,11 +1,57 @@
 import { Link } from 'react-router-dom';
+import { useForm } from '../../hooks';
+import { useState } from 'react';
+import { Alert } from '../../components/Alert';
+
+const initialForm = {
+  name: '',
+  email: '',
+  password: '',
+  password2: '',
+}
 
 export const RegisterPage = () => {
+
+  const { name, email, password, password2, onInputChange } = useForm(initialForm);
+  const [alert, setAlert] = useState({});
+
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+
+    if ([name, email, password, password2].includes('')) {
+      return setAlert({
+        message: 'Todos los campos son obligatorios',
+        type: true
+      });
+    }
+
+    if (password !== password2) {
+      return setAlert({
+        message: 'Las contraseñas no coinciden',
+        type: true
+      });
+    }
+
+    if (password.length < 6) {
+      return setAlert({
+        message: 'La contraseña debe tener al menos 6 caracteres',
+        type: true
+      });
+    }
+    setAlert({});
+    console.log('Creando cuenta...')
+  }
+
   return (
     <>
       <h1 className="text-2xl text-center font-bold uppercase">Regístrate y comienza a <span className="text-[#423F98]">administrar tus proyectos</span></h1>
 
-      <form className="my-10">
+      {alert?.message && <Alert alert={alert} />}
+
+      <form
+        className="my-10"
+        onSubmit={onSubmitForm}
+      >
         <div className="mb-5">
           <label
             htmlFor="name"
@@ -14,7 +60,10 @@ export const RegisterPage = () => {
           <input
             required
             id="name"
+            name='name'
             type="text"
+            value={name}
+            onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
           />
         </div>
@@ -27,6 +76,9 @@ export const RegisterPage = () => {
             required
             id="email"
             type="email"
+            name='email'
+            value={email}
+            onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
           />
         </div>
@@ -39,6 +91,9 @@ export const RegisterPage = () => {
             required
             id="password"
             type="password"
+            name='password'
+            value={password}
+            onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
           />
         </div>
@@ -51,7 +106,10 @@ export const RegisterPage = () => {
           <input
             required
             id="password2"
+            name='password2'
             type="password"
+            value={password2}
+            onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
           />
         </div>
