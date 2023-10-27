@@ -1,6 +1,8 @@
 import User from '../models/User.js';
 import { generateUniqueId } from '../helpers/generateUniqueId.js';
 import { generateJWT } from '../helpers/generateJWT.js';
+import { sendConfirmationEmail } from '../services/emailService.js';
+import { front } from '../config/config.js';
 
 export const createUser = async (req, res) => {
 
@@ -14,10 +16,13 @@ export const createUser = async (req, res) => {
   try {
     const newUser = new User({ email, name, password });
     newUser.token = generateUniqueId();
-    await newUser.save();
+
+    const user = await newUser.save();
+  
+    sendConfirmationEmail(user.email, `${front.URL}/auth/confirm-account/${user.token}`);
+
     return res.status(201).json({ message: 'Registro realizado con éxito. Por favor, revisa tu email para confirmar la cuenta.' });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ message: 'Error al registrar el usuario.' });
   }
 };
