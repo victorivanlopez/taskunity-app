@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks';
 import { useState } from 'react';
 import { Alert } from '../../components/Alert';
+import { createUser } from '../helpers';
 
 const initialForm = {
   name: '',
@@ -12,34 +13,42 @@ const initialForm = {
 
 export const RegisterPage = () => {
 
-  const { name, email, password, password2, onInputChange } = useForm(initialForm);
+  const { name, email, password, password2, onInputChange, onResetForm } = useForm(initialForm);
   const [alert, setAlert] = useState({});
 
-  const onSubmitForm = (e) => {
+  const onSubmitForm = async (e) => {
     e.preventDefault();
 
     if ([name, email, password, password2].includes('')) {
       return setAlert({
         message: 'Todos los campos son obligatorios',
-        type: true
+        error: true
       });
     }
 
     if (password !== password2) {
       return setAlert({
         message: 'Las contraseñas no coinciden',
-        type: true
+        error: true
       });
     }
 
     if (password.length < 6) {
       return setAlert({
         message: 'La contraseña debe tener al menos 6 caracteres',
-        type: true
+        error: true
       });
     }
     setAlert({});
-    console.log('Creando cuenta...')
+
+    const response = await createUser({ name, email, password });
+    
+    if (response?.error) {
+      setAlert(response);
+    } else {
+      setAlert(response);
+      onResetForm();
+    }
   }
 
   return (
