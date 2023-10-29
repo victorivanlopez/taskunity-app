@@ -25,7 +25,7 @@ const AuthRoutes = [
     element: <ResetPasswordPage />
   },
   {
-    path: 'confirm-account/:id',
+    path: 'confirm-account/:token',
     element: <ConfirmAccountPage />
   },
   {
