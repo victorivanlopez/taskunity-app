@@ -42,11 +42,9 @@ export const RegisterPage = () => {
     setAlert({});
 
     const response = await createUser({ name, email, password });
+    setAlert(response);
     
-    if (response?.error) {
-      setAlert(response);
-    } else {
-      setAlert(response);
+    if (!response?.error) {
       onResetForm();
     }
   }
