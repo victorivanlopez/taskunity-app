@@ -1,7 +1,7 @@
 import User from '../models/User.js';
 import { generateUniqueId } from '../helpers/generateUniqueId.js';
 import { generateJWT } from '../helpers/generateJWT.js';
-import { sendConfirmationEmail } from '../services/emailService.js';
+import { sendConfirmationEmail, sendResetPasswordEmail } from '../services/emailService.js';
 import { front } from '../config/config.js';
 
 export const createUser = async (req, res) => {
@@ -18,7 +18,7 @@ export const createUser = async (req, res) => {
     newUser.token = generateUniqueId();
 
     const user = await newUser.save();
-  
+
     sendConfirmationEmail(user.email, `${front.URL}/auth/confirm-account/${user.token}`);
 
     return res.status(201).json({ message: 'Registro realizado con éxito. Por favor, revisa tu email para confirmar la cuenta.' });
@@ -77,15 +77,21 @@ export const sendEmailPasswordReset = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(404).json({ message: 'El correo no está registrado' });
+    return res.status(404).json({ message: `El correo electrónico indicado no está registrado.` });
   }
 
   try {
     user.token = generateUniqueId();
     await user.save();
-    return res.json({ message: 'Correo electrónico de recuperación de contraseña enviado con éxito.' });
+
+    sendResetPasswordEmail(
+      user.email, 
+      `${front.URL}/auth/reset-password/${user.token}`
+    );
+
+    return res.json({ message: `Hemos enviado un correo electrónico a ${email} para restablecer la contraseña de acceso.` });
   } catch (error) {
-    return res.status(500).json({ message: 'Error al enviar el email.' }, error);
+    return res.status(500).json({ message: 'Error al enviar el correo electrónico.' }, error);
   }
 }
 
