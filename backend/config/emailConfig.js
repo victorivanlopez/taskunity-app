@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 
+//TODO: configurar variables de entorno
 const transporter = nodemailer.createTransport({
   host: 'sandbox.smtp.mailtrap.io',
   port: 2525,
