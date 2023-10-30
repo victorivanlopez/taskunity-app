@@ -33,11 +33,11 @@ export const authUser = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(404).json({ message: 'El correo no está registrado' });
+    return res.status(404).json({ message: 'Datos de acceso inválidos.' });
   }
 
   if (!user.confirmed) {
-    return res.status(403).json({ message: 'La cuenta no ha sido confirmada' });
+    return res.status(403).json({ message: 'La cuenta no ha sido confirmada.' });
   }
 
   if (await user.checkpassword(password)) {
@@ -48,7 +48,7 @@ export const authUser = async (req, res) => {
       token: generateJWT(user._id),
     })
   } else {
-    return res.status(403).json({ message: 'La contraseña es incorrecta' });
+    return res.status(403).json({ message: 'Datos de acceso inválidos.' });
   }
 }
 
