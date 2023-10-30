@@ -1,11 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppRouter from './router/AppRouter';
+import { AuthProvider } from './auth/context';
 
 const router = createBrowserRouter(AppRouter);
 
 const TaskUnityApp = () => {
   return (
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   )
 }
 
