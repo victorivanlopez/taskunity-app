@@ -1,8 +1,8 @@
-import axios from 'axios';
+import { clientAxios } from '../../config';
 
 export const confirmUser = async (token) => {
   try {
-    const { data } = await axios(`${import.meta.env.VITE_API_URL}/users/confirm/${token}`);
+    const { data } = await clientAxios(`/users/confirm/${token}`);
     return data;
   } catch (error) {
     return {

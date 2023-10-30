@@ -1,8 +1,8 @@
-import axios from 'axios';
+import { clientAxios } from '../../config';
 
 export const createUser = async (formData = {}) => {
   try {
-    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, formData);
+    const { data } = await clientAxios.post('/users', formData);
     return data;
   } catch (error) {
     return {

@@ -1,8 +1,8 @@
-import axios from 'axios';
+import { clientAxios } from '../../config';
 
 export const verifyToken = async (token) => {
   try {
-    const { data } = await axios(`${import.meta.env.VITE_API_URL}/users/reset-password/${token}`);
+    const { data } = await clientAxios(`/users/reset-password/${token}`);
     return data;
   } catch (error) {
     return {
