@@ -10,7 +10,6 @@ export const getProfileUser = async (token) => {
 
   try {
     const { data } = await clientAxios('/users/profile', options);
-    console.log(data)
     return data;
   } catch (error) {
     return {
