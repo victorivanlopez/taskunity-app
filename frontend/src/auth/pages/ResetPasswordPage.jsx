@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { verifyToken } from '../helpers';
+import { Link, useParams } from 'react-router-dom';
+import { resetPassword, verifyToken } from '../helpers';
 import { Alert } from '../../components';
+import { useForm } from '../../hooks';
+
+const initialForm = {
+  password: '',
+}
 
 export const ResetPasswordPage = () => {
 
   const { token } = useParams();
+  const { password, onInputChange, onResetForm } = useForm(initialForm);
   const [alert, setAlert] = useState({});
   const [isTokenValid, setIsTokenValid] = useState(false);
+  const [changedPassword, setChangedPassword] = useState(false);
+
 
   const verifyingToken = async () => {
     const response = await verifyToken(token);
@@ -24,6 +32,34 @@ export const ResetPasswordPage = () => {
     verifyingToken();
   }, [])
 
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+
+    if (password === '') {
+      return setAlert({
+        message: 'La contraseña es obligatoria',
+        error: true
+      });
+    }
+
+    if (password.length < 6) {
+      return setAlert({
+        message: 'La contraseña debe tener al menos 6 caracteres',
+        error: true
+      });
+    }
+    setAlert({});
+
+    const response = await resetPassword(token, password);
+    setAlert(response);
+    setChangedPassword(false);
+
+    if (!response?.error) {
+      onResetForm();
+      setChangedPassword(true);
+    }
+  }
+
   return (
     <>
       <h1 className="text-2xl text-center font-bold uppercase">Restablece tu contraseña para <span className="text-[#423F98]">administrar tus proyectos</span></h1>
@@ -33,8 +69,11 @@ export const ResetPasswordPage = () => {
       }
 
       {
-        isTokenValid && (
-          <form className="my-10">
+        (isTokenValid && !changedPassword) && (
+          <form
+            className="my-10"
+            onSubmit={onSubmitForm}
+          >
             <div className="mb-5">
               <label
                 htmlFor="password"
@@ -44,6 +83,9 @@ export const ResetPasswordPage = () => {
                 required
                 id="password"
                 type="password"
+                name='password'
+                value={password}
+                onChange={onInputChange}
                 className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
               />
             </div>
@@ -57,6 +99,19 @@ export const ResetPasswordPage = () => {
               </button>
             </div>
           </form>
+        )
+      }
+
+      {
+        changedPassword && (
+          <div className='mt-5 flex flex-col justify-center items-center'>
+            <Link
+              to='/auth/login'
+              className='text-[#423F98] underline font-bold'
+            >
+              Inicia Sesión
+            </Link>
+          </div>
         )
       }
     </>
