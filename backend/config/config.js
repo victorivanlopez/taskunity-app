@@ -17,3 +17,10 @@ export const front = {
 export const secret = {
   JWT_SECRET: process.env.JWT_SECRET,
 }
+
+export const email = {
+  USER: process.env.EMAIL_USER,
+  PASS: process.env.EMAIL_PASS,
+  PORT: process.env.EMAIL_PORT,
+  HOST: process.env.EMAIL_HOST
+}
