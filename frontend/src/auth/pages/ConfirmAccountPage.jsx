@@ -13,7 +13,7 @@ export const ConfirmAccountPage = () => {
     const response = await confirmUser(token);
     setAlert(response);
     setIsConfirmed(true);
-    
+
     if (response?.error) {
       setIsConfirmed(false);
     }
@@ -31,18 +31,18 @@ export const ConfirmAccountPage = () => {
         (alert?.message) && <Alert alert={alert} />
       }
 
-      <div className='mt-5 flex flex-col justify-center items-center'>
-        {
-          (isConfirmed) && (
+      {
+        (isConfirmed) && (
+          <div className='mt-5 flex flex-col justify-center items-center'>
             <Link
               to='/auth/login'
               className='text-[#423F98] underline font-bold'
             >
               Inicia Sesión
             </Link>
-          )
-        }
-      </div>
+          </div>
+        )
+      }
     </>
   )
 }
