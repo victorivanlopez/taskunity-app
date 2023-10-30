@@ -1,3 +1,4 @@
+export * from './authUser';
 export * from './confirmUser';
 export * from './createUser';
 export * from './resetPassword';
