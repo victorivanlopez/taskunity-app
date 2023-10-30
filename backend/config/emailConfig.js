@@ -1,12 +1,12 @@
 import nodemailer from 'nodemailer';
+import { email } from './config.js';
 
-//TODO: configurar variables de entorno
 const transporter = nodemailer.createTransport({
-  host: 'sandbox.smtp.mailtrap.io',
-  port: 2525,
+  host: email.HOST,
+  port: email.PORT,
   auth: {
-    user: '4daea9d84cb062',
-    pass: '1acae141ec6a72',
+    user: email.USER,
+    pass: email.PASS,
   },
 });
 
