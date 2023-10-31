@@ -1,11 +1,53 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth, useForm } from '../../hooks';
+import { Alert } from '../../components';
+import { authUser } from '../helpers';
+
+const initialForm = {
+  email: '',
+  password: '',
+}
 
 export const LoginPage = () => {
+
+  const { login, auth } = useAuth();
+  const { email, password, onInputChange } = useForm(initialForm);
+  const [alert, setAlert] = useState({});
+
+  const navigate = useNavigate();
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+
+    if ([email, password].includes('')) {
+      return setAlert({
+        message: 'Todos los campos son obligatorios.',
+        error: true
+      });
+    }
+    setAlert({});
+
+    const response = await authUser({ email, password });
+
+    if (response?.error) {
+      return setAlert(response);
+    }
+    setAlert({});
+    login(response);
+    navigate('/projects', { replace: true });
+  }
+
   return (
     <>
       <h1 className="text-2xl text-center font-bold uppercase">Inicia sesión en tu cuenta para <span className="text-[#423F98]">administrar tus proyectos</span></h1>
 
-      <form className="my-10">
+      {alert?.message && <Alert alert={alert} />}
+
+      <form
+        className="my-10"
+        onSubmit={onSubmitForm}
+      >
         <div className="mb-5">
           <label
             htmlFor="email"
@@ -15,6 +57,9 @@ export const LoginPage = () => {
             required
             id="email"
             type="email"
+            name='email'
+            value={email}
+            onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
           />
         </div>
@@ -27,6 +72,9 @@ export const LoginPage = () => {
             required
             id="password"
             type="password"
+            name='password'
+            value={password}
+            onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
           />
         </div>
