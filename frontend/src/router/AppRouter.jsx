@@ -1,7 +1,8 @@
-import { AuthLayout } from '../auth/layout/AuthLayout';
 import { PrivateRoute } from './PrivateRoute';
-import AuthRoutes from '../auth/routes/AuthRoutes';
 import { PublicRoute } from './PublicRoute';
+import { AuthLayout } from '../auth/layout/AuthLayout';
+import { ProjectsLayout } from '../TaskUnity/layout/ProjectsLayout';
+import AuthRoutes from '../auth/routes/AuthRoutes';
 
 const AppRouter = [
   {
@@ -17,10 +18,10 @@ const AppRouter = [
     children: AuthRoutes,
   },
   {
-    path: '/projects',
+    path: '/dashboard',
     element: 
       <PrivateRoute>
-        <h1>Proyectos</h1>
+        <ProjectsLayout />
       </PrivateRoute>
   },
 ]
