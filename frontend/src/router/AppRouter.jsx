@@ -1,8 +1,9 @@
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { AuthLayout } from '../auth/layout/AuthLayout';
-import { DashboardLayout } from '../TaskUnity/layout/DashboardLayout';
+import { AdminLayout } from '../TaskUnity/layout/AdminLayout';
 import AuthRoutes from '../auth/routes/AuthRoutes';
+import { DashboardRoutes, ProjectsRoutes } from '../TaskUnity/routes/TaskUnityRoutes';
 
 const AppRouter = [
   {
@@ -19,10 +20,19 @@ const AppRouter = [
   },
   {
     path: '/dashboard',
-    element: 
+    element:
       <PrivateRoute>
-        <DashboardLayout />
-      </PrivateRoute>
+        <AdminLayout />
+      </PrivateRoute>,
+    children: DashboardRoutes
+  },
+  {
+    path: '/projects',
+    element:
+      <PrivateRoute>
+        <AdminLayout />
+      </PrivateRoute>,
+    children: ProjectsRoutes
   },
 ]
 
