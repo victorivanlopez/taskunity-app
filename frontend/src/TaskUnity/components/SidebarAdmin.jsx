@@ -20,8 +20,8 @@ export const SidebarAdmin = () => {
 
       </button>
 
-      <aside ref={sidebar} className="fixed top-0 mt-32 md:mt-16 left-0 w-64 h-screen transition-transform -translate-x-full md:translate-x-0 shadow" aria-label="Sidebar">
-        <div className="h-full px-6 py-10 overflow-y-auto bg-[#EAF1F7]">
+      <aside ref={sidebar} className="fixed top-0 pt-32 md:pt-16 left-0 w-64 h-screen bg-[#EAF1F7] transition-transform -translate-x-full md:translate-x-0 shadow" aria-label="Sidebar">
+        <div className="h-full px-6 py-6 overflow-y-auto bg-[#EAF1F7]">
           <ul className="space-y-2 font-medium">
             <li>
               <NavLink
@@ -67,7 +67,7 @@ export const SidebarAdmin = () => {
                     to="/projects/new"
                     onClick={() => sidebar.current.classList.toggle('-translate-x-full')}
                   >
-                    Agregar proyecto
+                    Nuevo proyecto
                   </NavLink>
                 </li>
               </ul>

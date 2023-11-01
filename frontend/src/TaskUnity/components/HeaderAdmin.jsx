@@ -6,7 +6,7 @@ export const HeaderAdmin = () => {
   const { auth } = useAuth();
 
   return (
-    <header className="relative top-0 z-10">
+    <header className="md:fixed relative left-0 right-0 top-0 z-10">
       <nav className="bg-[#EAF1F7] border-[#423F98] border-b">
         <div className="flex flex-wrap items-center justify-center md:justify-between gap-6 md:gap-0 mx-auto py-4 px-10">
           <Link to={'/dashboard'}>
