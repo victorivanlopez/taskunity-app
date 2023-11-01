@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks';
 
-export const HeaderDashboard = () => {
+export const HeaderAdmin = () => {
 
   const { auth } = useAuth();
 
@@ -8,7 +9,9 @@ export const HeaderDashboard = () => {
     <header className="relative top-0 z-10">
       <nav className="bg-[#EAF1F7] border-[#423F98] border-b">
         <div className="flex flex-wrap items-center justify-center md:justify-between gap-6 md:gap-0 mx-auto py-4 px-10">
-          <img src="/assets/taskunity-logo.png" className="h-10" alt="TaskUnity Logo" />
+          <Link to={'/dashboard'}>
+            <img src="/assets/taskunity-logo.png" className="h-10" alt="TaskUnity Logo" />
+          </Link>
 
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -17,7 +20,7 @@ export const HeaderDashboard = () => {
               </svg>
               <span className="sr-only">Icono buscar</span>
             </div>
-            <input type="text" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none focus:border-[#B0A6EB]" placeholder="Buscar proyecto" />
+            <input type="text" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none focus:border-[#B0A6EB]" placeholder="Buscar..." />
           </div>
 
           <p className="hidden md:block">Bienvenido, <span className="font-bold">{auth.user.name}</span></p>
