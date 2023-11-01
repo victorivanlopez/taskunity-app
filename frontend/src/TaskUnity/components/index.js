@@ -1,2 +1,2 @@
-export * from './HeaderDashboard';
-export * from './SidebarDashboard';
+export * from './HeaderAdmin';
+export * from './SidebarAdmin';
