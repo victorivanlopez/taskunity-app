@@ -30,12 +30,8 @@ export const getProject = async (req, res) => {
       const { message } = new Error('No tienes acceso a este proyecto.');
       return res.status(401).json({ message });
     }
-
-    const tasks = await Task.find().where('project').equals(project._id);
-    res.json({
-      project,
-      tasks
-    });
+    
+    res.json(project);
 
   } catch (error) {
     const { message } = new Error('Proyecto no encontrado.');
