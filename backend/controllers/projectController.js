@@ -9,9 +9,7 @@ export const getProjects = async (req, res) => {
 
 export const createProject = async (req, res) => {
 
-  const { name, description, client } = req.body;
-
-  const newProject = new Project({ name, description, client });
+  const newProject = new Project(req.body);
   newProject.creator = req.user._id;
 
   try {
