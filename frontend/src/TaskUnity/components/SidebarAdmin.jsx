@@ -20,7 +20,7 @@ export const SidebarAdmin = () => {
 
       </button>
 
-      <aside ref={sidebar} className="fixed top-0 pt-32 md:pt-16 left-0 w-64 h-screen bg-[#EAF1F7] transition-transform -translate-x-full md:translate-x-0 shadow" aria-label="Sidebar">
+      <aside ref={sidebar} className="fixed top-0 pt-32 md:pt-16 left-0 w-64 h-screen bg-[#EAF1F7] transition-transform duration-500 -translate-x-full md:translate-x-0 shadow" aria-label="Sidebar">
         <div className="h-full px-6 py-6 overflow-y-auto bg-[#EAF1F7]">
           <ul className="space-y-2 font-medium">
             <li>
