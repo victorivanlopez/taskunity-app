@@ -5,13 +5,14 @@ import { createProject } from '../helpers';
 export const TaskUnityProvider = ({ children }) => {
 
   const [alert, setAlert] = useState({});
-  const token = localStorage.getItem('token');
 
   const showAlert = (alert) => {
     setAlert(alert);
   }
 
   const startCreateProject = async (project) => {
+    const token = localStorage.getItem('token');
+
     return await createProject(project, token);
   }
 
