@@ -1,4 +1,4 @@
-import { DashboardPage, ProjectsPage, ProjectNewPage } from '../pages';
+import { DashboardPage, ProjectsPage, ProjectNewPage, ProjectPage } from '../pages';
 
 //TODO: agregar pagina 404
 
@@ -17,5 +17,9 @@ export const ProjectsRoutes = [
   {
     path: 'new',
     element: <ProjectNewPage />
+  },
+  {
+    path: ':id',
+    element: <ProjectPage />
   },
 ]
