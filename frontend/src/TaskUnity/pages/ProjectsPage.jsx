@@ -14,18 +14,15 @@ export const ProjectsPage = () => {
 
   return (
     <>
-      <h1 className='text-4xl font-black'>Proyectos</h1>
+      <h1 className='text-4xl font-bold'>Proyectos</h1>
 
-      <div className='mx-auto max-w-6xl my-14'>
+      <div className='my-10'>
         {
           (projects.length > 0)
             ? <ProjectsList projects={projects} />
             : <p>No hay proyectos.</p>
         }
       </div>
-
     </>
-
-
   )
 }

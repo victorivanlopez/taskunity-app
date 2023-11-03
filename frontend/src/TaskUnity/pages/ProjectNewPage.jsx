@@ -36,7 +36,7 @@ export const ProjectNewPage = () => {
     showAlert({});
 
     const response = await startCreateProject(formState);
-    if(response.error) {
+    if (response.error) {
       return showAlert(response);
     }
     onResetForm();
@@ -45,7 +45,7 @@ export const ProjectNewPage = () => {
 
   return (
     <>
-      <h1 className="text-4xl font-black">Crea un nuevo proyecto</h1>
+      <h1 className="text-4xl font-bold text-center">Nuevo proyecto</h1>
 
       <div className="my-10">
         <div className="mx-auto max-w-xl overflow-hidden rounded-lg bg-white py-12 px-4 md:px-12 shadow">
