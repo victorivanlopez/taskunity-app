@@ -43,10 +43,10 @@ export const ProjectPage = () => {
       </Link>
 
 
-      <div className='flex justify-between items-center'>
+      <div className='md:flex md:justify-between items-center'>
         <h1 className='text-4xl font-bold'>{name}</h1>
 
-        <div className='flex flex-col md:flex-row gap-4'>
+        <div className='flex justify-between mt-6 md:mt-0 gap-4'>
           <Link
             to={'edit'}
             className='text-[#423F98] flex gap-1'
