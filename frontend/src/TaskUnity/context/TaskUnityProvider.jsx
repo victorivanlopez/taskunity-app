@@ -43,6 +43,7 @@ export const TaskUnityProvider = ({ children }) => {
   }
 
   const startDeleteProject = async (id) => {
+    // TODO: Agregar sweetalert2
     if(confirm('¿Desea eliminar este proyecto?')) {
       const token = localStorage.getItem('token');
       if (!token) return;
