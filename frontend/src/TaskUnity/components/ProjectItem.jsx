@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, redirectDocument, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { formatDate } from '../helpers';
 import { useTaskUnityContext } from '../../hooks';
 
@@ -16,8 +16,6 @@ export const ProjectItem = ({ project }) => {
     }
   }, [isDeleted])
 
-
-  const date = deadline.split('T')[0];
   const dropdownDots = useRef(null);
   const dropdownDotsContainer = useRef(null);
 
@@ -81,7 +79,7 @@ export const ProjectItem = ({ project }) => {
           <p className='my-2 line-clamp-3'>{description}</p>
 
           <div className='border-t border-gray-200 pt-6 text-xs mt-auto'>
-            <p className='font-bold'>Fecha de entrega: <span className='font-normal'>{formatDate(date)}</span></p>
+            <p className='font-bold'>Fecha de entrega: <span className='font-normal'>{formatDate(deadline)}</span></p>
           </div>
         </Link>
       </div>
