@@ -15,11 +15,11 @@ export const ProjectEditPage = () => {
   if (isLoading) return <Spinner />
 
   const initialForm = {
-    id: project._id,
-    name: project.name,
-    description: project.description,
-    deadline: project.deadline.split('T')[0],
-    client: project.client,
+    id: project?._id,
+    name: project?.name,
+    description: project?.description,
+    deadline: project?.deadline?.split('T')[0],
+    client: project?.client,
   }
 
   return (
