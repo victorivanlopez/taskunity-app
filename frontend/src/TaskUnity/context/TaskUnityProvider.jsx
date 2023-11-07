@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { TaskUnityContext } from './TaskUnityContext';
-import { createProject, deleteProject, getProject, getProjects, updateProject } from '../helpers';
+import {
+  createProject,
+  createTask,
+  deleteProject,
+  getProject,
+  getProjects,
+  updateProject
+} from '../helpers';
 
 export const TaskUnityProvider = ({ children }) => {
 
@@ -8,6 +15,7 @@ export const TaskUnityProvider = ({ children }) => {
   const [project, setProject] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [alert, setAlert] = useState({});
+  const [isOpenModalTask, setIsOpenModalTask] = useState(false);
 
   const showAlert = (alert) => {
     setAlert(alert);
@@ -26,7 +34,7 @@ export const TaskUnityProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (!token) return;
 
-    if(project.id) {
+    if (project.id) {
       return await updateProject(project, token);
     }
     return await createProject(project, token);
@@ -44,13 +52,24 @@ export const TaskUnityProvider = ({ children }) => {
 
   const startDeleteProject = async (id) => {
     // TODO: Agregar sweetalert2
-    if(confirm('¿Desea eliminar este proyecto?')) {
+    if (confirm('¿Desea eliminar este proyecto?')) {
       const token = localStorage.getItem('token');
       if (!token) return;
-     return await deleteProject(id, token);
+      return await deleteProject(id, token);
     } else {
       return null;
     }
+  }
+
+  const startSaveTask = async (task) => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    return await createTask(task, token);
+  }
+
+  const onShowModalTask = () => {
+    showAlert({});
+    setIsOpenModalTask(!isOpenModalTask);
   }
 
   return (
@@ -65,6 +84,9 @@ export const TaskUnityProvider = ({ children }) => {
         startGetProject,
         project,
         startDeleteProject,
+        startSaveTask,
+        isOpenModalTask,
+        onShowModalTask,
       }}
     >
       {children}
