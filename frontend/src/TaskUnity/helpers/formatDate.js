@@ -1,7 +1,6 @@
 
 export const formatDate = (date) => {
   const objDate = new Date(date);
-  console.log(objDate)
 
   const options = {
     year: 'numeric',
