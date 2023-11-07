@@ -6,3 +6,5 @@ export * from './ProjectItem';
 export * from './ProjectsList';
 export * from './SidebarAdmin';
 export * from './Spinner';
+export * from './TabTasks';
+export * from './TabsProject';
