@@ -25,7 +25,7 @@ export const getProject = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const project = await Project.findById(id);
+    const project = await Project.findById(id).populate('tasks');
     if (project.creator.toString() !== req.user._id.toString()) {
       const { message } = new Error('No tienes acceso a este proyecto.');
       return res.status(401).json({ message });
