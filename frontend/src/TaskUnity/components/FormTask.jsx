@@ -79,6 +79,7 @@ export const FormTask = () => {
             id="dueDate"
             type="date"
             name='dueDate'
+            min={new Date().toISOString().split('T')[0]}
             max={project.deadline.split('T')[0]}
             value={dueDate}
             onChange={onInputChange}
