@@ -5,12 +5,24 @@ export const SidebarAdmin = () => {
 
   const sidebar = useRef();
 
+  const showSidebar = () => {
+    sidebar.current.classList.toggle('-translate-x-full');
+    document.body.classList.toggle('overflow-y-hidden');
+  }
+
+  const hiddenSidebar = () => {
+    if (document.body.classList.contains('overflow-y-hidden')) {
+      sidebar.current.classList.add('-translate-x-full');
+      document.body.classList.remove('overflow-y-hidden');
+    }
+  }
+
   return (
     <>
       <button
         type="button"
         className="absolute top-4 z-50 p-2 mt-2 ml-3 text-sm text-[#423F98] rounded-lg sm:hidden focus:outline-none focus:ring-2 focus:ring-[#EAF1F7]"
-        onClick={() => sidebar.current.classList.toggle('-translate-x-full')}
+        onClick={showSidebar}
       >
         <span className="sr-only">Mostrar menú</span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
@@ -19,14 +31,14 @@ export const SidebarAdmin = () => {
 
       </button>
 
-      <aside ref={sidebar} className="fixed top-0 pt-32 md:pt-16 left-0 w-64 h-screen bg-[#EAF1F7] transition-transform duration-500 -translate-x-full md:translate-x-0 shadow" aria-label="Sidebar">
+      <aside ref={sidebar} className="fixed z-10 top-0 pt-32 md:pt-20 left-0 w-64 h-screen bg-[#EAF1F7] transition-transform duration-500 -translate-x-full md:translate-x-0 shadow" aria-label="Sidebar">
         <div className="h-full px-6 py-6 overflow-y-auto bg-[#EAF1F7]">
           <ul className="space-y-2 font-medium">
             <li>
               <NavLink
                 className={({ isActive }) => `${isActive ? 'bg-[#423F98] text-white' : ''} flex items-center gap-2 p-2 rounded-lg hover:bg-[#423F98] text-[#545454] hover:text-white transition-colors w-full`}
                 to="/dashboard"
-                onClick={() => sidebar.current.classList.toggle('-translate-x-full')}
+                onClick={hiddenSidebar}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                   <path fillRule="evenodd" d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z" clipRule="evenodd" />
@@ -39,7 +51,7 @@ export const SidebarAdmin = () => {
               <NavLink
                 className={({ isActive }) => `${isActive ? 'bg-[#423F98] text-white' : ''} flex items-center gap-2 p-2 rounded-lg hover:bg-[#423F98] text-[#545454] hover:text-white transition-colors w-full`}
                 to="/projects"
-                onClick={() => sidebar.current.classList.toggle('-translate-x-full')}
+                onClick={hiddenSidebar}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                   <path d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
