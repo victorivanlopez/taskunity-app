@@ -64,7 +64,11 @@ export const TaskUnityProvider = ({ children }) => {
   const startSaveTask = async (task) => {
     const token = localStorage.getItem('token');
     if (!token) return;
-    return await createTask(task, token);
+    const response = await createTask(task, token);
+    const projectUpdated = { ...project.tasks };
+    projectUpdated.tasks = [...project.tasks, response.task];
+    setProject(projectUpdated);
+    return response;
   }
 
   const onShowModalTask = () => {
