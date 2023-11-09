@@ -80,7 +80,7 @@ export const FormTask = () => {
             type="date"
             name='dueDate'
             min={new Date().toISOString().split('T')[0]}
-            max={project.deadline.split('T')[0]}
+            max={project?.deadline.split('T')[0]}
             value={dueDate}
             onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"

@@ -6,12 +6,12 @@ export const TabsProject = () => {
   const classNames = (...classes) => classes.filter(Boolean).join(' ');
 
   return (
-    <div className='w-full max-w-lg py-10'>
+    <div className='container py-10'>
       <Tab.Group>
         <Tab.List className='flex my-5'>
           <Tab className={({ selected }) =>
             classNames(
-              'flex w-full justify-center gap-2 py-2.5 font-medium transition-colors duration-300 mx-2 focus:outline-none',
+              'flex w-full justify-center gap-2 py-2.5 font-medium transition-colors duration-300 mx-1 focus:outline-none',
               selected
                 ? 'border-b-2 border-[#423F98] text-[#423F98]'
                 : 'hover:text-[#423F98] border-b-2 hover:border-[#423F98]'
@@ -26,7 +26,7 @@ export const TabsProject = () => {
           </Tab>
           <Tab className={({ selected }) =>
             classNames(
-              'flex w-full justify-center gap-2 py-2.5 font-medium transition-colors duration-300 mx-2 focus:outline-none',
+              'flex w-full justify-center gap-2 py-2.5 font-medium transition-colors duration-300 mx-1 focus:outline-none',
               selected
                 ? 'border-b-2 border-[#423F98] text-[#423F98]'
                 : 'hover:text-[#423F98] border-b-2 hover:border-[#423F98]'
