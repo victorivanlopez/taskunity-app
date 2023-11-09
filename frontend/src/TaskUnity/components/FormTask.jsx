@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Dialog } from '@headlessui/react';
 import { useForm, useTaskUnityContext } from '../../hooks';
 import { Alert } from '../../components';
 
@@ -6,15 +8,32 @@ const initialForm = {
   name: '',
   description: '',
   dueDate: '',
-  priority: '',
+  priority: ''
 }
 
 export const FormTask = () => {
+  const { 
+    id, 
+    name, 
+    description, 
+    dueDate, 
+    priority, 
+    onInputChange, formState, onResetForm, updateDataForm } = useForm(initialForm);
+  const { startSaveTask, showAlert, alert, project, onShowModalTask, task } = useTaskUnityContext();
 
-  const { name, description, dueDate, priority, onInputChange, formState, onResetForm } = useForm(initialForm);
-  const { startSaveTask, showAlert, alert, project, onShowModalTask } = useTaskUnityContext();
+  const { id: projectId } = useParams();
 
-  const { id } = useParams();
+  useEffect(() => {
+    if (task?._id) {
+      updateDataForm({
+        id: task._id,
+        name: task.name,
+        description: task.description,
+        dueDate: task.dueDate?.split('T')[0],
+        priority: task.priority
+      });
+    }
+  }, [])
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -26,13 +45,16 @@ export const FormTask = () => {
       });
     }
     showAlert({});
-    await startSaveTask({ ...formState, project: id });
+    await startSaveTask({ ...formState, project: projectId });
     onResetForm();
     onShowModalTask();
   }
 
   return (
     <>
+      <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
+        {id ? `Editando: ${name}` : 'Crea una nueva tarea'}
+      </Dialog.Title>
       {alert?.message && <Alert alert={alert} />}
 
       <form
@@ -80,7 +102,7 @@ export const FormTask = () => {
             type="date"
             name='dueDate'
             min={new Date().toISOString().split('T')[0]}
-            max={project?.deadline.split('T')[0]}
+            max={project?.deadline?.split('T')[0]}
             value={dueDate}
             onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
@@ -112,7 +134,7 @@ export const FormTask = () => {
             className="w-full cursor-pointer rounded-md border bg-[#423F98] py-3 px-5 text-base text-white font-bold transition-colors hover:bg-opacity-90"
             type="submit"
           >
-            Crear tarea
+            {id ? 'Guardar cambios' : 'Crea tarea'}
           </button>
         </div>
       </form>
