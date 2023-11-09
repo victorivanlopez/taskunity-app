@@ -8,3 +8,5 @@ export * from './SidebarAdmin';
 export * from './Spinner';
 export * from './TabTasks';
 export * from './TabsProject';
+export * from './TaskItem';
+export * from './TasksList';
