@@ -11,7 +11,7 @@ export const TabsProject = () => {
         <Tab.List className='flex my-5'>
           <Tab className={({ selected }) =>
             classNames(
-              'flex w-60 justify-center gap-2 py-2.5 font-medium transition-colors duration-300 mx-1 focus:outline-none',
+              'flex w-60 justify-center gap-2 py-4 font-medium transition-colors duration-300 mx-1 focus:outline-none',
               selected
                 ? 'border-b-2 border-[#423F98] text-[#423F98]'
                 : 'hover:text-[#423F98] border-b-2 hover:border-[#423F98]'
@@ -26,7 +26,7 @@ export const TabsProject = () => {
           </Tab>
           <Tab className={({ selected }) =>
             classNames(
-              'flex w-60 justify-center gap-2 py-2.5 font-medium transition-colors duration-300 mx-1 focus:outline-none',
+              'flex w-60 justify-center gap-2 py-4 font-medium transition-colors duration-300 mx-1 focus:outline-none',
               selected
                 ? 'border-b-2 border-[#423F98] text-[#423F98]'
                 : 'hover:text-[#423F98] border-b-2 hover:border-[#423F98]'
