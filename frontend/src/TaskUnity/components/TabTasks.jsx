@@ -1,8 +1,12 @@
-import { useTaskUnityContext } from "../../hooks";
+import { useTaskUnityContext } from '../../hooks';
+import { TasksList } from './TasksList';
+import { Spinner } from './Spinner';
 
 export const TabTasks = () => {
 
-  const { onShowModalTask } = useTaskUnityContext();
+  const { project, isLoading, onShowModalTask } = useTaskUnityContext();
+
+  if (isLoading) return <Spinner />
 
   return (
     <>
@@ -18,7 +22,13 @@ export const TabTasks = () => {
         <span>Nueva tarea</span>
       </button>
 
-      
+      <div className="my-10">
+        {
+          (project?.tasks?.length > 0)
+            ? <TasksList tasks={project.tasks} />
+            : <p>No hay tareas aún en este proyecto.</p>
+        }
+      </div>
     </>
   )
 }
