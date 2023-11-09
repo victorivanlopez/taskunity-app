@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useTaskUnityContext } from '../../hooks';
 import { FormTask } from './FormTask';
@@ -6,9 +6,10 @@ import { FormTask } from './FormTask';
 export const ModalFormTask = () => {
 
   const { isOpenModalTask, onShowModalTask } = useTaskUnityContext();
+
   return (
     <Transition.Root show={isOpenModalTask} as={Fragment}>
-      <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={onShowModalTask}>
+      <Dialog as="div" className="fixed z-50 inset-0 overflow-y-auto" onClose={onShowModalTask}>
         <div className="flex items-center justify-center min-h-screen p-4 text-center sm:block">
           <Transition.Child
             as={Fragment}
@@ -53,13 +54,8 @@ export const ModalFormTask = () => {
                   </svg>
                 </button>
               </div>
-
-
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 sm:mt-0 sm:ml-4 w-full">
-                  <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
-                    Crea una nueva tarea
-                  </Dialog.Title>
                   <FormTask />
                 </div>
               </div>
