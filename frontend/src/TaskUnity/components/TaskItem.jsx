@@ -1,24 +1,23 @@
 import { calculateDaysRemaining } from '../helpers';
 
+const prioritiesColors = {
+  baja: 'border-green-500',
+  media: 'border-yellow-500',
+  alta: 'border-red-500',
+}
+
 export const TaskItem = ({ task }) => {
 
   const { name, description, dueDate, priority, isCompleted } = task;
 
-  const prioritiesColors = {
-    baja: 'green-500',
-    media: 'yellow-500',
-    alta: 'red-500',
-  }
-
-
   return (
-    <div className={`border-${prioritiesColors[priority]} p-6 border-l-4 rounded-lg shadow-md hover:bg-gray-100 transition-colors`}>
+    <div className={`p-6 border-l-4 rounded-lg shadow-md hover:bg-gray-100 ${prioritiesColors[priority]} transition-colors`}>
 
       <div className="flex flex-col justify-center">
         <h4 className="text-xl font-bold tracking-tight w-3/4 line-clamp-2">{name}</h4>
-        <p className='my-2 line-clamp-3'>{description}</p>
+        <p className='my-2'>{description}</p>
 
-        <div className='border-t border-gray-200 pt-4 text-sm mt-2 flex justify-between '>
+        <div className='border-t border-gray-200 pt-4 text-sm mt-2 flex justify-between'>
           {
             isCompleted
               ? <p className='font-bold text-green-500'>Completada</p>
