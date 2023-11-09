@@ -18,6 +18,7 @@ export const TaskUnityProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [alert, setAlert] = useState({});
   const [isOpenModalTask, setIsOpenModalTask] = useState(false);
+  const [isOpenModalAlert, setIsOpenModalAlert] = useState(false);
 
   const showAlert = (alert) => {
     setAlert(alert);
@@ -87,6 +88,10 @@ export const TaskUnityProvider = ({ children }) => {
     setIsOpenModalTask(!isOpenModalTask);
   }
 
+  const onShowModalAlert = () => {
+    setIsOpenModalAlert(!isOpenModalAlert);
+  }
+
   const onModalEditingTask = (task) => {
     setTask(task);
     setIsOpenModalTask(true);
@@ -107,6 +112,8 @@ export const TaskUnityProvider = ({ children }) => {
         startSaveTask,
         isOpenModalTask,
         onShowModalTask,
+        onShowModalAlert,
+        isOpenModalAlert,
         onModalEditingTask,
         task,
       }}
