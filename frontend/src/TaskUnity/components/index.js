@@ -1,4 +1,5 @@
 export * from './AlertDeleteTask';
+export * from './DaysRemaining';
 export * from './FormProject';
 export * from './FormTask';
 export * from './HeaderAdmin';
