@@ -8,8 +8,8 @@ export const TasksList = ({ tasks }) => {
 
   return (
     <>
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
-        <div className='col-span-2 space-y-4'>
+      <div className='grid grid-cols-1 gap-10'>
+        <div className='space-y-4'>
           <div className='border-b pb-2 flex justify-between'>
             <h5 className='text-xl font-bold'>En proceso</h5>
             <p>{tasksInProgress.length} Tarea(s)</p>
