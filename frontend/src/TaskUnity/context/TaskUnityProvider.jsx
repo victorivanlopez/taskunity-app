@@ -4,6 +4,7 @@ import {
   createProject,
   createTask,
   deleteProject,
+  deleteTask,
   getProject,
   getProjects,
   updateProject,
@@ -17,6 +18,7 @@ export const TaskUnityProvider = ({ children }) => {
   const [task, setTask] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [alert, setAlert] = useState({});
+  const [dataToDelete, setDataToDelete] = useState({});
   const [isOpenModalTask, setIsOpenModalTask] = useState(false);
   const [isOpenModalAlert, setIsOpenModalAlert] = useState(false);
 
@@ -82,6 +84,19 @@ export const TaskUnityProvider = ({ children }) => {
     return response;
   }
 
+  const startDeleteTask = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    const projectUpdated = { ...project };
+
+    await deleteTask(dataToDelete._id, token);
+    projectUpdated.tasks = projectUpdated.tasks.filter(task => task._id !== dataToDelete._id);
+    setProject(projectUpdated);
+    setDataToDelete({});
+    setIsOpenModalAlert(false);
+  }
+
   const onShowModalTask = () => {
     showAlert({});
     setTask({});
@@ -90,6 +105,10 @@ export const TaskUnityProvider = ({ children }) => {
 
   const onShowModalAlert = () => {
     setIsOpenModalAlert(!isOpenModalAlert);
+  }
+
+  const addDataToDelete = (data) => {
+    setDataToDelete(data);
   }
 
   const onModalEditingTask = (task) => {
@@ -115,7 +134,9 @@ export const TaskUnityProvider = ({ children }) => {
         onShowModalAlert,
         isOpenModalAlert,
         onModalEditingTask,
+        addDataToDelete,
         task,
+        startDeleteTask
       }}
     >
       {children}
