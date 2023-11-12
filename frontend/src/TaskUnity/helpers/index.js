@@ -4,6 +4,7 @@ export * from './createTask';
 export * from './deleteProject';
 export * from './deleteTask';
 export * from './formatDate';
+export * from './getCurrentDate';
 export * from './getProject';
 export * from './getProjects';
 export * from './updateProject';
