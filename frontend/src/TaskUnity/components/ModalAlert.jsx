@@ -4,7 +4,7 @@ import { useTaskUnityContext } from '../../hooks';
 
 export const ModalAlert = ({ children }) => {
 
-  const { onShowModalAlert, isOpenModalAlert } = useTaskUnityContext();
+  const { isOpenModalAlert, onShowModalAlert } = useTaskUnityContext();
 
   return (
     <Transition.Root show={isOpenModalAlert} as={Fragment}>
