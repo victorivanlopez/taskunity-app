@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTaskUnityContext } from '../../hooks';
-import { ModalFormTask, ModalAlert, Spinner, TabsProject, AlertDeleteTask } from '../components';
+import { Spinner, TabsProject, AlertDeleteTask, Modal, ModalAlert, FormTask } from '../components';
 
 export const ProjectPage = () => {
 
@@ -35,7 +35,10 @@ export const ProjectPage = () => {
 
       <TabsProject />
 
-      <ModalFormTask />
+      <Modal>
+        <FormTask />
+      </Modal>
+
       <ModalAlert>
         <AlertDeleteTask />
       </ModalAlert>
