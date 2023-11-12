@@ -3,25 +3,28 @@ import { useParams } from 'react-router-dom';
 import { Dialog } from '@headlessui/react';
 import { useForm, useTaskUnityContext } from '../../hooks';
 import { Alert } from '../../components';
+import { getCurrentDate } from '../helpers';
 
 const initialForm = {
   name: '',
   description: '',
   dueDate: '',
-  priority: ''
+  priority: '',
 }
 
 export const FormTask = () => {
-  const { 
-    id, 
-    name, 
-    description, 
-    dueDate, 
-    priority, 
+  const {
+    id,
+    name,
+    description,
+    dueDate,
+    priority,
     onInputChange, formState, onResetForm, updateDataForm } = useForm(initialForm);
   const { startSaveTask, showAlert, alert, project, onShowModalTask, task } = useTaskUnityContext();
 
   const { id: projectId } = useParams();
+
+  const deadlineProject = project?.deadline?.split('T')[0];
 
   useEffect(() => {
     if (task?._id) {
@@ -44,6 +47,12 @@ export const FormTask = () => {
         error: true
       });
     }
+    if (dueDate <= getCurrentDate()) {
+      return showAlert({
+        message: `La fecha debe ser mayor a ${getCurrentDate()}.`,
+        error: true
+      });
+    }
     showAlert({});
     await startSaveTask({ ...formState, project: projectId });
     onResetForm();
@@ -55,6 +64,7 @@ export const FormTask = () => {
       <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
         {id ? `Editando: ${name}` : 'Crea una nueva tarea'}
       </Dialog.Title>
+
       {alert?.message && <Alert alert={alert} />}
 
       <form
@@ -101,8 +111,8 @@ export const FormTask = () => {
             id="dueDate"
             type="date"
             name='dueDate'
-            min={new Date().toISOString().split('T')[0]}
-            max={project?.deadline?.split('T')[0]}
+            min={getCurrentDate()}
+            max={deadlineProject}
             value={dueDate}
             onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
