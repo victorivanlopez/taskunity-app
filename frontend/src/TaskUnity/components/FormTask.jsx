@@ -56,7 +56,6 @@ export const FormTask = () => {
     showAlert({});
     await startSaveTask({ ...formState, project: projectId });
     onResetForm();
-    onShowModalTask();
   }
 
   return (
