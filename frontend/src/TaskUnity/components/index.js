@@ -3,6 +3,7 @@ export * from './DaysRemaining';
 export * from './FormProject';
 export * from './FormTask';
 export * from './HeaderAdmin';
+export * from './Modal';
 export * from './ModalAlert';
 export * from './ModalFormTask';
 export * from './ProjectItem';
