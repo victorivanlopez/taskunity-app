@@ -1,5 +1,5 @@
 import { useTaskUnityContext } from '../../hooks';
-import { calculateDaysRemaining } from '../helpers';
+import { DaysRemaining } from './';
 
 const prioritiesColors = {
   baja: 'border-green-500',
@@ -25,19 +25,14 @@ export const TaskItem = ({ task }) => {
         <h4 className="text-xl font-bold tracking-tight w-3/4 line-clamp-2">{name}</h4>
         <p className='my-2'>{description}</p>
 
-        <div className='border-t border-gray-200 pt-4 text-sm mt-2 flex justify-between'>
+        <div className='border-t border-gray-200 pt-4 text-sm mt-2 flex justify-between text-[#545454]'>
           {
             isCompleted
               ? <p className='font-bold text-green-500'>Completada</p>
-              : <div className='flex gap-2 items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className='font-bold'>{`${calculateDaysRemaining(dueDate)} dias restantes`}</p>
-              </div>
+              : <DaysRemaining date={dueDate} />
           }
 
-          <ul className='flex gap-4 items-center text-[#545454]'>
+          <ul className='flex gap-4 items-center'>
             <li>
               <button
                 type='button'
