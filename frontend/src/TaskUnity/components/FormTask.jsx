@@ -131,7 +131,7 @@ export const FormTask = () => {
             onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
           >
-            <option value="">-- Seleccionar --</option>
+            <option value="" disabled>-- Seleccionar --</option>
             <option value="baja">Baja</option>
             <option value="media">Media</option>
             <option value="alta">Alta</option>
