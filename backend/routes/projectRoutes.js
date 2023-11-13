@@ -13,4 +13,6 @@ router.route('/:id')
   .put(checkUserAuth, projectController.updateProject)
   .delete(checkUserAuth, projectController.deleteProject);
 
+router.post('/collaborators', checkUserAuth, projectController.searchCollaborator);
+
 export default router;
