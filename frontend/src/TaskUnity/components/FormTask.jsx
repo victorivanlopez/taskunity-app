@@ -61,7 +61,7 @@ export const FormTask = () => {
   return (
     <>
       <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
-        {id ? `Editando: ${name}` : 'Crea una nueva tarea'}
+        {id ? `Editando: ${name}` : 'Nueva tarea'}
       </Dialog.Title>
 
       {alert?.message && <Alert alert={alert} />}
