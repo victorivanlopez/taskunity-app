@@ -1,5 +1,5 @@
 import { Tab } from '@headlessui/react';
-import { TabTasks } from './TabTasks';
+import { TabTasks, TabCollaborators } from './';
 
 export const TabsProject = () => {
 
@@ -43,7 +43,9 @@ export const TabsProject = () => {
           <Tab.Panel>
             <TabTasks />
           </Tab.Panel>
-          <Tab.Panel>Sin colaboradores</Tab.Panel>
+          <Tab.Panel>
+            <TabCollaborators />
+          </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
     </div>
