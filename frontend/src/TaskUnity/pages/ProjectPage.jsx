@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTaskUnityContext } from '../../hooks';
-import { Spinner, TabsProject, AlertDeleteTask, Modal, ModalAlert, FormTask } from '../components';
+import { Spinner, TabsProject, AlertDeleteTask, Modal, ModalAlert, FormTask, FormCollaborator } from '../components';
 
 export const ProjectPage = () => {
 
   const { id } = useParams();
-  const { startGetProject, project, isLoading } = useTaskUnityContext();
+  const { startGetProject, project, isLoading, typeModal } = useTaskUnityContext();
 
   useEffect(() => {
     startGetProject(id);
@@ -35,8 +35,14 @@ export const ProjectPage = () => {
 
       <TabsProject />
 
+
       <Modal>
-        <FormTask />
+        {
+          typeModal === 'task'
+            ? <FormTask /> :
+          typeModal === 'collaborators'
+            ? <FormCollaborator /> : null
+        }
       </Modal>
 
       <ModalAlert>
