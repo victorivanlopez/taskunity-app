@@ -21,8 +21,8 @@ export const TaskUnityProvider = ({ children }) => {
   const [alert, setAlert] = useState({});
   const [dataToDelete, setDataToDelete] = useState({});
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [typeModal, setTypeModal] = useState('');
   const [isOpenModalAlert, setIsOpenModalAlert] = useState(false);
-  const [isOpenModalTask, setIsOpenModalTask] = useState(false);
 
   const showAlert = (alert) => {
     setAlert(alert);
@@ -114,13 +114,8 @@ export const TaskUnityProvider = ({ children }) => {
     setIsOpenModalAlert(false);
   }
 
-  const onShowModalTask = () => {
-    showAlert({});
-    setTask({});
-    setIsOpenModalTask(!isOpenModalTask);
-  }
-
-  const onShowModal = () => {
+  const onShowModal = (type = '') => {
+    setTypeModal(type);
     showAlert({});
     setTask({});
     setProjectToEdit({});
@@ -142,6 +137,7 @@ export const TaskUnityProvider = ({ children }) => {
 
   const onModalEditingTask = (task) => {
     setTask(task);
+    setTypeModal('task');
     setIsOpenModal(true);
   }
 
@@ -158,10 +154,9 @@ export const TaskUnityProvider = ({ children }) => {
         project,
         startDeleteProject,
         startSaveTask,
-        isOpenModalTask,
-        onShowModalTask,
         onShowModal,
         isOpenModal,
+        typeModal,
         onShowModalAlert,
         isOpenModalAlert,
         onModalEditingProject,
