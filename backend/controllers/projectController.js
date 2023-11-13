@@ -13,8 +13,8 @@ export const createProject = async (req, res) => {
   newProject.creator = req.user._id;
 
   try {
-    await newProject.save();
-    return res.status(201).json({ message: 'Proyecto creado con éxito.' });
+    const project = await newProject.save();
+    return res.status(201).json({ message: 'Proyecto creado con éxito.', project });
   } catch (error) {
     const { message } = new Error('Error al crear el proyecto.');
     return res.status(500).json({ message });
