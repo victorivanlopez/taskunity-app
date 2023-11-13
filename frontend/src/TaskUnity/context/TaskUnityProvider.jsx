@@ -19,8 +19,9 @@ export const TaskUnityProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [alert, setAlert] = useState({});
   const [dataToDelete, setDataToDelete] = useState({});
-  const [isOpenModalTask, setIsOpenModalTask] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenModalAlert, setIsOpenModalAlert] = useState(false);
+  const [isOpenModalTask, setIsOpenModalTask] = useState(false);
 
   const showAlert = (alert) => {
     setAlert(alert);
@@ -55,15 +56,17 @@ export const TaskUnityProvider = ({ children }) => {
     setProject(project);
   }
 
-  const startDeleteProject = async (id) => {
-    // TODO: Agregar sweetalert2
-    if (confirm('¿Desea eliminar este proyecto?')) {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-      return await deleteProject(id, token);
-    } else {
-      return null;
-    }
+  const startDeleteProject = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+
+    await deleteProject(dataToDelete._id, token);
+
+    const projectsUpdated = projects.filter(project => (project._id !== dataToDelete._id));
+    setProjects(projectsUpdated);
+    setDataToDelete({});
+    setIsOpenModalAlert(false);
   }
 
   const startSaveTask = async (task) => {
@@ -76,11 +79,13 @@ export const TaskUnityProvider = ({ children }) => {
       const response = await updateTask(task, token);
       projectUpdated.tasks = projectUpdated.tasks.map(task => (task._id === response._id) ? response : task);
       setProject(projectUpdated);
+      setIsOpenModal(false);
       return response;
     }
     const response = await createTask(task, token);
     projectUpdated.tasks = [...project.tasks, response.task];
     setProject(projectUpdated);
+    setIsOpenModal(false);
     return response;
   }
 
@@ -103,6 +108,12 @@ export const TaskUnityProvider = ({ children }) => {
     setIsOpenModalTask(!isOpenModalTask);
   }
 
+  const onShowModal = () => {
+    showAlert({});
+    setTask({});
+    setIsOpenModal(!isOpenModal);
+  }
+
   const onShowModalAlert = () => {
     setIsOpenModalAlert(!isOpenModalAlert);
   }
@@ -113,7 +124,7 @@ export const TaskUnityProvider = ({ children }) => {
 
   const onModalEditingTask = (task) => {
     setTask(task);
-    setIsOpenModalTask(true);
+    setIsOpenModal(true);
   }
 
   return (
@@ -131,6 +142,8 @@ export const TaskUnityProvider = ({ children }) => {
         startSaveTask,
         isOpenModalTask,
         onShowModalTask,
+        onShowModal,
+        isOpenModal,
         onShowModalAlert,
         isOpenModalAlert,
         onModalEditingTask,
