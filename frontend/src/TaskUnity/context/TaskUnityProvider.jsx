@@ -16,6 +16,7 @@ export const TaskUnityProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
   const [project, setProject] = useState({});
   const [task, setTask] = useState({});
+  const [projectToEdit, setProjectToEdit] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [alert, setAlert] = useState({});
   const [dataToDelete, setDataToDelete] = useState({});
@@ -41,9 +42,20 @@ export const TaskUnityProvider = ({ children }) => {
     if (!token) return;
 
     if (project.id) {
-      return await updateProject(project, token);
+      const response = await updateProject(project, token);
+      const projectsUpdated = projects.map(project => (project._id === response._id) ? response : project);
+      setProjects(projectsUpdated);
+      setIsOpenModal(false);
+      return;
     }
-    return await createProject(project, token);
+    const response = await createProject(project, token);
+
+    if (response.project) {
+      setProjects([...projects, response.project]);
+      setIsOpenModal(false);
+      return;
+    }
+    return response;
   }
 
   const startGetProject = async (id) => {
@@ -111,6 +123,7 @@ export const TaskUnityProvider = ({ children }) => {
   const onShowModal = () => {
     showAlert({});
     setTask({});
+    setProjectToEdit({});
     setIsOpenModal(!isOpenModal);
   }
 
@@ -120,6 +133,11 @@ export const TaskUnityProvider = ({ children }) => {
 
   const addDataToDelete = (data) => {
     setDataToDelete(data);
+  }
+
+  const onModalEditingProject = (project) => {
+    setProjectToEdit(project);
+    setIsOpenModal(true);
   }
 
   const onModalEditingTask = (task) => {
@@ -146,6 +164,8 @@ export const TaskUnityProvider = ({ children }) => {
         isOpenModal,
         onShowModalAlert,
         isOpenModalAlert,
+        onModalEditingProject,
+        projectToEdit,
         onModalEditingTask,
         addDataToDelete,
         task,

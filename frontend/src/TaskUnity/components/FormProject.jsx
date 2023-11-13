@@ -1,23 +1,42 @@
-import { useNavigate } from 'react-router-dom';
+import { Dialog } from '@headlessui/react';
 import { useForm, useTaskUnityContext } from '../../hooks';
 import { Alert } from '../../components';
+import { getCurrentDate } from '../helpers';
+import { useEffect } from 'react';
 
-
-export const FormProject = ({ btnText = '', initialForm = {} }) => {
+const initialForm = {
+  name: '',
+  description: '',
+  deadline: '',
+  client: '',
+}
+export const FormProject = () => {
 
   const {
+    id,
     name,
     description,
     deadline,
     client,
     onInputChange,
     formState,
-    onResetForm
+    onResetForm,
+    updateDataForm,
   } = useForm(initialForm);
 
-  const { showAlert, alert, startSaveProject } = useTaskUnityContext();
+  const { showAlert, alert, projectToEdit, startSaveProject } = useTaskUnityContext();
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (projectToEdit?._id) {
+      updateDataForm({
+        id: projectToEdit._id,
+        name: projectToEdit.name,
+        description: projectToEdit.description,
+        deadline: projectToEdit.deadline?.split('T')[0],
+        client: projectToEdit.client
+      });
+    }
+  }, [])
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -31,18 +50,22 @@ export const FormProject = ({ btnText = '', initialForm = {} }) => {
     showAlert({});
 
     const response = await startSaveProject(formState);
+
     if (response?.error) {
       return showAlert(response);
     }
     onResetForm();
-    navigate('/projects');
   }
   return (
-    <div className="mx-auto max-w-xl overflow-hidden rounded-lg bg-white py-12 px-4 md:px-12 shadow">
+    <>
+      <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
+        {id ? `Editando: ${name}` : 'Nuevo proyecto'}
+      </Dialog.Title>
 
       {alert?.message && <Alert alert={alert} />}
 
       <form
+        className='py-10'
         onSubmit={onSubmitForm}
       >
         <div className="mb-5">
@@ -85,6 +108,7 @@ export const FormProject = ({ btnText = '', initialForm = {} }) => {
             id="deadline"
             type="date"
             name='deadline'
+            min={getCurrentDate()}
             value={deadline}
             onChange={onInputChange}
             className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
@@ -112,10 +136,10 @@ export const FormProject = ({ btnText = '', initialForm = {} }) => {
             className="w-full cursor-pointer rounded-md border bg-[#423F98] py-3 px-5 text-base text-white font-bold transition-colors hover:bg-opacity-90"
             type="submit"
           >
-            {btnText}
+            {id ? 'Guardar cambios' : 'Crear proyecto'}
           </button>
         </div>
       </form>
-    </div>
+    </>
   )
 }
