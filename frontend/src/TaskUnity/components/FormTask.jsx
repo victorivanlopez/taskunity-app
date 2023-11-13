@@ -20,7 +20,7 @@ export const FormTask = () => {
     dueDate,
     priority,
     onInputChange, formState, onResetForm, updateDataForm } = useForm(initialForm);
-  const { startSaveTask, showAlert, alert, project, onShowModalTask, task } = useTaskUnityContext();
+  const { startSaveTask, showAlert, alert, project, task } = useTaskUnityContext();
 
   const { id: projectId } = useParams();
 
