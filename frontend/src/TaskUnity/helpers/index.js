@@ -7,5 +7,6 @@ export * from './formatDate';
 export * from './getCurrentDate';
 export * from './getProject';
 export * from './getProjects';
+export * from './searchCollaborator';
 export * from './updateProject';
 export * from './updateTask';
