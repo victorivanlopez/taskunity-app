@@ -1,3 +1,4 @@
+export * from './AlertDeleteProject';
 export * from './AlertDeleteTask';
 export * from './DaysRemaining';
 export * from './FormProject';
