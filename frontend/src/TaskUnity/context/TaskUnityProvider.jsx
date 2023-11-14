@@ -8,6 +8,7 @@ import {
   deleteTask,
   getProject,
   getProjects,
+  removeCollaborator,
   searchCollaborator,
   updateProject,
   updateTask
@@ -116,6 +117,7 @@ export const TaskUnityProvider = ({ children }) => {
     const projectUpdated = { ...project };
 
     await deleteTask(dataToDelete._id, token);
+
     projectUpdated.tasks = projectUpdated.tasks.filter(task => task._id !== dataToDelete._id);
     setProject(projectUpdated);
     setDataToDelete({});
@@ -142,9 +144,30 @@ export const TaskUnityProvider = ({ children }) => {
     if (!token) return;
 
     const response = await addCollaborator(email, project._id, token);
+    //TODO: Modificar en el state los colaboradores
 
     showAlert(response);
     return response;
+  }
+
+  const startDeleteCollaborator = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    const response = await removeCollaborator(dataToDelete._id, project._id, token);
+
+    if (response?.error) {
+      return showAlert(response);
+    }
+
+    const projectUpdated = { ...project };
+
+    projectUpdated.collaborators = projectUpdated.collaborators.filter(collaborator => collaborator._id !== dataToDelete._id);
+    setProject(projectUpdated);
+
+    showAlert({});
+    setDataToDelete({});
+    setIsOpenModalAlert(false);
   }
 
   const onShowModal = (type = '') => {
@@ -158,6 +181,7 @@ export const TaskUnityProvider = ({ children }) => {
 
   const onShowModalAlert = (type = '') => {
     setTypeModal(type);
+    setDataToDelete({});
     setIsOpenModalAlert(!isOpenModalAlert);
   }
 
@@ -201,6 +225,7 @@ export const TaskUnityProvider = ({ children }) => {
         startSaveTask,
         startSearchCollaborator,
         startAddCollaborator,
+        startDeleteCollaborator,
         task,
         typeModal,
       }}
