@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Alert } from '../../components';
 import { useForm, useTaskUnityContext } from '../../hooks';
-import { CollaboratorItem } from './CollaboratorItem';
+import { CollaboratorResult } from './CollaboratorResult';
 import { Spinner } from './Spinner';
 
 export const FormCollaborator = () => {
@@ -70,7 +70,7 @@ export const FormCollaborator = () => {
 
       <div>
         {
-          collaborator?._id && <CollaboratorItem collaborator={collaborator} />
+          collaborator?._id && <CollaboratorResult collaborator={collaborator} />
         }
       </div>
     </>
