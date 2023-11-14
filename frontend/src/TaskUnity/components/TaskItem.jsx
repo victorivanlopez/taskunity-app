@@ -19,11 +19,11 @@ export const TaskItem = ({ task }) => {
 
 
   return (
-    <div className={`p-6 border-l-4 rounded-lg shadow-md hover:bg-gray-100 ${prioritiesColors[priority]} transition-colors`}>
+    <div className={`${isCompleted ? 'border-none' : prioritiesColors[priority]} p-6 border-l-4 rounded-lg shadow-md hover:bg-gray-100 transition-colors`}>
 
       <div className="flex flex-col justify-center">
         <h4 className="text-xl font-bold tracking-tight w-3/4 line-clamp-2">{name}</h4>
-        <p className='my-2'>{description}</p>
+        <p className='my-2'>{isCompleted ? '' : description}</p>
 
         <div className='border-t border-gray-200 pt-4 text-sm mt-2 flex justify-between text-[#545454]'>
           {
