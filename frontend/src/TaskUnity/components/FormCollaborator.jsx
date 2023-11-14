@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Alert } from '../../components';
 import { useForm, useTaskUnityContext } from '../../hooks';
 import { CollaboratorItem } from './CollaboratorItem';
+import { Spinner } from './Spinner';
 
 export const FormCollaborator = () => {
 
   const { email, onInputChange } = useForm({ email: '' });
 
   const { startSearchCollaborator, showAlert, alert, collaborator } = useTaskUnityContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -19,7 +22,9 @@ export const FormCollaborator = () => {
       });
     }
     showAlert({});
+    setIsLoading(true);
     await startSearchCollaborator(email);
+    setIsLoading(false);
   }
 
   return (
@@ -32,7 +37,7 @@ export const FormCollaborator = () => {
 
       <form
         className='py-10'
-      onSubmit={onSubmitForm}
+        onSubmit={onSubmitForm}
       >
         <div className="mb-5">
           <label
@@ -52,13 +57,16 @@ export const FormCollaborator = () => {
 
         <div>
           <button
-            className="w-full cursor-pointer rounded-md border bg-[#423F98] py-3 px-5 text-base text-white font-bold transition-colors hover:bg-opacity-90"
             type="submit"
+            className="w-full cursor-pointer rounded-md border bg-[#423F98] py-3 px-5 text-base text-white font-bold transition-colors hover:bg-opacity-90 disabled:bg-opacity-50"
+            disabled={isLoading}
           >
             Buscar colaborador
           </button>
         </div>
       </form>
+
+      {isLoading && <Spinner />}
 
       <div>
         {
