@@ -1,5 +1,6 @@
 export * from './AlertDeleteProject';
 export * from './AlertDeleteTask';
+export * from './CollaboratorItem';
 export * from './DaysRemaining';
 export * from './FormCollaborator';
 export * from './FormProject';
