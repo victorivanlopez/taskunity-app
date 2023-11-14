@@ -1,5 +1,5 @@
 import Project from '../models/Project.js';
-import Task from '../models/Task.js';
+import User from '../models/User.js';
 
 export const getProjects = async (req, res) => {
   const projects = await Project.find().where('creator').equals(req.user._id);
@@ -75,4 +75,17 @@ export const deleteProject = async (req, res) => {
     const { message } = new Error('Proyecto no encontrado o hubo un error al eliminar.');
     return res.status(404).json({ message });
   }
+}
+
+export const searchCollaborator = async (req, res) => {
+  const email = req.body.email;
+
+  const user = await User.findOne({email}).select(['email', 'name']);
+
+  if(!user) {
+    const { message } = new Error('El usuario no fue encontrado.');
+    return res.status(404).json({ message });
+  }
+
+  res.json(user);
 }
