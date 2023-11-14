@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTaskUnityContext } from '../../hooks';
 
-export const CollaboratorItem = ({ collaborator }) => {
+export const CollaboratorResult = ({ collaborator }) => {
 
-  const { _id, name, email } = collaborator;
+  const { name, email } = collaborator;
 
   const [isDisabled, setIsDisabled] = useState(false);
   const { startAddCollaborator } = useTaskUnityContext();
