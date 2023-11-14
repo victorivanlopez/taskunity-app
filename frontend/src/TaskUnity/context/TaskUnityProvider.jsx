@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { TaskUnityContext } from './TaskUnityContext';
 import {
+  addCollaborator,
   createProject,
   createTask,
   deleteProject,
@@ -67,9 +68,12 @@ export const TaskUnityProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (!token) return;
 
-    const project = await getProject(id, token);
+    const response = await getProject(id, token);
+
+    if (response?.error) return
+
     setIsLoading(false);
-    setProject(project);
+    setProject(response);
   }
 
   const startDeleteProject = async () => {
@@ -126,11 +130,21 @@ export const TaskUnityProvider = ({ children }) => {
 
     const response = await searchCollaborator(email, token);
 
-    if(response?.error) {
+    if (response?.error) {
       return showAlert(response);
     }
     showAlert({});
     setCollaborator(response);
+  }
+
+  const startAddCollaborator = async (email) => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    const response = await addCollaborator(email, project._id, token);
+
+    showAlert(response);
+    return response;
   }
 
   const onShowModal = (type = '') => {
@@ -185,6 +199,7 @@ export const TaskUnityProvider = ({ children }) => {
         startSaveProject,
         startSaveTask,
         startSearchCollaborator,
+        startAddCollaborator,
         task,
         typeModal,
       }}
