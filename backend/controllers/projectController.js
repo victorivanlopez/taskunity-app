@@ -30,7 +30,7 @@ export const getProject = async (req, res) => {
       const { message } = new Error('No tienes acceso a este proyecto.');
       return res.status(401).json({ message });
     }
-    
+
     res.json(project);
 
   } catch (error) {
@@ -80,12 +80,57 @@ export const deleteProject = async (req, res) => {
 export const searchCollaborator = async (req, res) => {
   const email = req.body.email;
 
-  const user = await User.findOne({email}).select(['email', 'name']);
+  const user = await User.findOne({ email }).select(['email', 'name']);
 
-  if(!user) {
+  if (!user) {
     const { message } = new Error('El usuario no fue encontrado.');
     return res.status(404).json({ message });
   }
 
   res.json(user);
+}
+
+export const addCollaborator = async (req, res) => {
+  const id = req.params.id;
+  const email = req.body.email;
+
+  try {
+    const project = await Project.findById(id);
+
+    if (project.creator.toString() !== req.user._id.toString()) {
+      const { message } = new Error('No tienes acceso a este proyecto.');
+      return res.status(401).json({ message });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      const { message } = new Error('El usuario no fue encontrado.');
+      return res.status(404).json({ message });
+    }
+
+    if (project.creator.toString() === user._id.toString()) {
+      const { message } = new Error('El creador del proyecto no puede ser colaborador.');
+      return res.status(400).json({ message });
+    }
+
+    if (project.collaborators.includes(user._id)) {
+      const { message } = new Error('Este usuario ya es colaborador del proyecto.');
+      return res.status(400).json({ message });
+    }
+
+    project.collaborators.push(user._id);
+    await project.save();
+
+    res.json({ message: 'Colaborador agregado correctamente.' });
+
+  } catch (error) {
+    if (error.kind === 'ObjectId') {
+      const { message } = new Error('Proyecto no encontrado.');
+      return res.status(404).json({ message });
+    } else {
+      const { message } = new Error('Error al crear agregar el colaborador.');
+      return res.status(500).json({ message, error });
+    }
+  }
 }
