@@ -156,7 +156,8 @@ export const TaskUnityProvider = ({ children }) => {
     setIsOpenModal(!isOpenModal);
   }
 
-  const onShowModalAlert = () => {
+  const onShowModalAlert = (type = '') => {
+    setTypeModal(type);
     setIsOpenModalAlert(!isOpenModalAlert);
   }
 

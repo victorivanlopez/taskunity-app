@@ -13,7 +13,7 @@ export const TaskItem = ({ task }) => {
   const { onModalEditingTask, onShowModalAlert, addDataToDelete } = useTaskUnityContext();
 
   const onClickDelete = () => {
-    onShowModalAlert();
+    onShowModalAlert('task');
     addDataToDelete(task);
   }
 
