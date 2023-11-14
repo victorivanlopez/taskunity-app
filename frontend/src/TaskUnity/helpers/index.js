@@ -1,3 +1,4 @@
+export * from './addCollaborator';
 export * from './calculateDaysRemaining';
 export * from './createProject';
 export * from './createTask';
