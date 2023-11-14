@@ -1,3 +1,4 @@
+export * from './AlertDeleteCollaborator';
 export * from './AlertDeleteProject';
 export * from './AlertDeleteTask';
 export * from './CollaboratorItem';
