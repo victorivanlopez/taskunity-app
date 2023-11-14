@@ -11,7 +11,7 @@ export const TasksList = ({ tasks }) => {
       <div className='grid grid-cols-1 gap-10'>
         <div className='space-y-4'>
           <div className='border-b pb-2 flex justify-between'>
-            <h5 className='text-xl font-bold'>En proceso</h5>
+            <h4 className='text-xl font-bold'>En proceso</h4>
             <p>{tasksInProgress.length} Tarea(s)</p>
           </div>
           {
@@ -22,7 +22,7 @@ export const TasksList = ({ tasks }) => {
         </div>
         <div className='space-y-4'>
           <div className='border-b pb-2 flex justify-between'>
-            <h5 className='text-xl font-bold'>Completadas</h5>
+            <h4 className='text-xl font-bold'>Completadas</h4>
             <p>{tasksCompleted.length} Tarea(s)</p>
           </div>
           {
