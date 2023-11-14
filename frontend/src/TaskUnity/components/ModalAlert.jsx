@@ -4,11 +4,16 @@ import { useTaskUnityContext } from '../../hooks';
 
 export const ModalAlert = ({ children }) => {
 
-  const { isOpenModalAlert, onShowModalAlert, typeModal } = useTaskUnityContext();
+  const { isOpenModalAlert, onShowModalAlert, typeModal, addDataToDelete } = useTaskUnityContext();
+
+  const onClickCancel = () => {
+    onShowModalAlert(typeModal);
+    addDataToDelete({});
+  }
 
   return (
     <Transition.Root show={isOpenModalAlert} as={Fragment}>
-      <Dialog as="div" className="fixed z-50 inset-0 overflow-y-auto" onClose={() => onShowModalAlert(typeModal)}>
+      <Dialog as="div" className="fixed z-50 inset-0 overflow-y-auto" onClose={onClickCancel}>
         <div className="flex items-center justify-center min-h-screen p-4 text-center sm:block">
           <Transition.Child
             as={Fragment}
@@ -45,7 +50,7 @@ export const ModalAlert = ({ children }) => {
                 <button
                   type="button"
                   className=" bg-white rounded-md text-[#423F98] hover:text-opacity-90 transition-colors focus:outline-none"
-                  onClick={() => onShowModalAlert(typeModal)}
+                  onClick={onClickCancel}
                 >
                   <span className="sr-only">Cerrar</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
