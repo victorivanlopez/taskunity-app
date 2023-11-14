@@ -1,8 +1,9 @@
 import { useTaskUnityContext } from '../../hooks';
+import { CollaboratorsList } from './CollaboratorsList';
 
 export const TabCollaborators = () => {
 
-  const { onShowModal } = useTaskUnityContext();
+  const { onShowModal, project } = useTaskUnityContext();
 
   return (
     <>
@@ -17,6 +18,14 @@ export const TabCollaborators = () => {
 
         <span>Nuevo colaborador</span>
       </button>
+
+      <div className="my-10">
+        {
+          (project?.collaborators?.length > 0)
+            ? <CollaboratorsList collaborators={project.collaborators} />
+            : <p>No hay colaboradores en este proyecto.</p>
+        }
+      </div>
     </>
   )
 }
