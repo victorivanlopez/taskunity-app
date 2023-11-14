@@ -7,14 +7,18 @@ import {
   deleteTask,
   getProject,
   getProjects,
+  searchCollaborator,
   updateProject,
   updateTask
 } from '../helpers';
 
 export const TaskUnityProvider = ({ children }) => {
 
+  //TODO: Mejorar obtención de token para no repetir tanto código
+
   const [projects, setProjects] = useState([]);
   const [project, setProject] = useState({});
+  const [collaborator, setCollaborator] = useState({});
   const [task, setTask] = useState({});
   const [projectToEdit, setProjectToEdit] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -114,8 +118,24 @@ export const TaskUnityProvider = ({ children }) => {
     setIsOpenModalAlert(false);
   }
 
+  const startSearchCollaborator = async (email) => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    setCollaborator({});
+
+    const response = await searchCollaborator(email, token);
+
+    if(response?.error) {
+      return showAlert(response);
+    }
+    showAlert({});
+    setCollaborator(response);
+  }
+
   const onShowModal = (type = '') => {
     setTypeModal(type);
+    setCollaborator({});
     showAlert({});
     setTask({});
     setProjectToEdit({});
@@ -144,27 +164,29 @@ export const TaskUnityProvider = ({ children }) => {
   return (
     <TaskUnityContext.Provider
       value={{
-        showAlert,
+        addDataToDelete,
         alert,
-        startSaveProject,
-        startGetProjects,
-        projects,
+        collaborator,
         isLoading,
-        startGetProject,
-        project,
-        startDeleteProject,
-        startSaveTask,
-        onShowModal,
         isOpenModal,
-        typeModal,
-        onShowModalAlert,
         isOpenModalAlert,
         onModalEditingProject,
-        projectToEdit,
         onModalEditingTask,
-        addDataToDelete,
+        onShowModal,
+        onShowModalAlert,
+        project,
+        projects,
+        projectToEdit,
+        showAlert,
+        startDeleteProject,
+        startDeleteTask,
+        startGetProject,
+        startGetProjects,
+        startSaveProject,
+        startSaveTask,
+        startSearchCollaborator,
         task,
-        startDeleteTask
+        typeModal,
       }}
     >
       {children}
