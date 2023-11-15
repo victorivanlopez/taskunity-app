@@ -18,5 +18,6 @@ export * from './Spinner';
 export * from './TabCollaborators';
 export * from './TabTasks';
 export * from './TabsProject';
+export * from './TabsProjectCollaborator';
 export * from './TaskItem';
 export * from './TasksList';
