@@ -1,27 +1,30 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTaskUnityContext } from '../../hooks';
-import { 
-  Spinner, 
-  TabsProject, 
-  AlertDeleteTask, 
-  Modal, 
-  ModalAlert, 
-  FormTask, 
-  FormCollaborator, 
-  AlertDeleteCollaborator 
+import {
+  Spinner,
+  TabsProject,
+  AlertDeleteTask,
+  Modal,
+  ModalAlert,
+  FormTask,
+  FormCollaborator,
+  AlertDeleteCollaborator
 } from '../components';
+import { Alert } from '../../components';
 
 export const ProjectPage = () => {
 
   const { id } = useParams();
-  const { startGetProject, project, isLoading, typeModal } = useTaskUnityContext();
+  const { startGetProject, project, isLoading, typeModal, alert } = useTaskUnityContext();
 
   useEffect(() => {
     startGetProject(id);
   }, [])
 
   if (isLoading) return <Spinner />
+
+  if (alert?.error) return <Alert alert={alert} />
 
   const { name } = project;
 
@@ -49,8 +52,8 @@ export const ProjectPage = () => {
         {
           typeModal === 'task'
             ? <FormTask /> :
-          typeModal === 'collaborator'
-            ? <FormCollaborator /> : null
+            typeModal === 'collaborator'
+              ? <FormCollaborator /> : null
         }
       </Modal>
 
@@ -58,8 +61,8 @@ export const ProjectPage = () => {
         {
           typeModal === 'task'
             ? <AlertDeleteTask /> :
-          typeModal === 'collaborator'
-            ? <AlertDeleteCollaborator /> : null
+            typeModal === 'collaborator'
+              ? <AlertDeleteCollaborator /> : null
         }
       </ModalAlert>
     </>
