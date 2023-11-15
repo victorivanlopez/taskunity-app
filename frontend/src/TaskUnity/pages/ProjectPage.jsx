@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useTaskUnityContext } from '../../hooks';
+import { useAdmin, useTaskUnityContext } from '../../hooks';
 import {
   Spinner,
   TabsProject,
@@ -9,7 +9,8 @@ import {
   ModalAlert,
   FormTask,
   FormCollaborator,
-  AlertDeleteCollaborator
+  AlertDeleteCollaborator,
+  TabsProjectCollaborator
 } from '../components';
 import { Alert } from '../../components';
 
@@ -17,6 +18,7 @@ export const ProjectPage = () => {
 
   const { id } = useParams();
   const { startGetProject, project, isLoading, typeModal, alert } = useTaskUnityContext();
+  const { isAdmin } = useAdmin();
 
   useEffect(() => {
     startGetProject(id);
@@ -45,15 +47,19 @@ export const ProjectPage = () => {
 
       <h1 className='text-4xl font-bold'>{name}</h1>
 
-      <TabsProject />
-
+      {
+        isAdmin
+          ? <TabsProject />
+          : <TabsProjectCollaborator />
+      }
+      
 
       <Modal>
         {
           typeModal === 'task'
             ? <FormTask /> :
-            typeModal === 'collaborator'
-              ? <FormCollaborator /> : null
+          typeModal === 'collaborator'
+            ? <FormCollaborator /> : null
         }
       </Modal>
 
@@ -61,8 +67,8 @@ export const ProjectPage = () => {
         {
           typeModal === 'task'
             ? <AlertDeleteTask /> :
-            typeModal === 'collaborator'
-              ? <AlertDeleteCollaborator /> : null
+          typeModal === 'collaborator'
+            ? <AlertDeleteCollaborator /> : null
         }
       </ModalAlert>
     </>

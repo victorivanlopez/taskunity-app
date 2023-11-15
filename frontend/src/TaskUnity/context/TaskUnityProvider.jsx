@@ -70,8 +70,6 @@ export const TaskUnityProvider = ({ children }) => {
     if (!token) return;
 
     const response = await getProject(id, token);
-    console.log(response)
-
     if (response?.error) {
       setAlert(response);
       setIsLoading(false);
