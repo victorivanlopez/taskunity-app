@@ -4,7 +4,7 @@ import { useTaskUnityContext } from '../../hooks';
 
 export const AlertDeleteCollaborator = () => {
 
-  const { onShowModalAlert, typeModal } = useTaskUnityContext();
+  const { onShowModalAlert, startDeleteCollaborator, typeModal } = useTaskUnityContext();
 
   return (
     <>
@@ -27,7 +27,7 @@ export const AlertDeleteCollaborator = () => {
           </button>
           <button
             className='rounded-lg border bg-red-500 px-4 py-2 text-base text-white font-bold'
-          // onClick={startDeleteProject}
+            onClick={startDeleteCollaborator}
           >
             Eliminar
           </button>
