@@ -8,6 +8,7 @@ export * from './formatDate';
 export * from './getCurrentDate';
 export * from './getProject';
 export * from './getProjects';
+export * from './removeCollaborator';
 export * from './searchCollaborator';
 export * from './updateProject';
 export * from './updateTask';
