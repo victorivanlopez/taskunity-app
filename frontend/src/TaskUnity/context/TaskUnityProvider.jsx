@@ -70,9 +70,14 @@ export const TaskUnityProvider = ({ children }) => {
     if (!token) return;
 
     const response = await getProject(id, token);
+    console.log(response)
 
-    if (response?.error) return
-
+    if (response?.error) {
+      setAlert(response);
+      setIsLoading(false);
+      return;
+    }
+    setAlert({});
     setIsLoading(false);
     setProject(response);
   }
@@ -149,7 +154,7 @@ export const TaskUnityProvider = ({ children }) => {
       showAlert(response);
       return response;
     }
-
+    showAlert({});
     const projectUpdated = { ...project };
 
     projectUpdated.collaborators = [...projectUpdated.collaborators, collaborator];
@@ -168,13 +173,12 @@ export const TaskUnityProvider = ({ children }) => {
     if (response?.error) {
       return showAlert(response);
     }
-
+    showAlert({});
     const projectUpdated = { ...project };
 
     projectUpdated.collaborators = projectUpdated.collaborators.filter(collaborator => collaborator._id !== dataToDelete._id);
     setProject(projectUpdated);
 
-    showAlert({});
     setDataToDelete({});
     setIsOpenModalAlert(false);
   }
