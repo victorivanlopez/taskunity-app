@@ -33,7 +33,8 @@ export const getProject = async (req, res) => {
     const project = await Project.findById(id)
       .populate('tasks')
       .populate('collaborators', 'name email');
-    if (project.creator.toString() !== req.user._id.toString()) {
+
+    if (project.creator.toString() !== req.user._id.toString() && !project.collaborators.some((collaborator => collaborator._id.toString() === req.user._id.toString()))) {
       const { message } = new Error('No tienes acceso a este proyecto.');
       return res.status(401).json({ message });
     }
@@ -41,8 +42,13 @@ export const getProject = async (req, res) => {
     res.json(project);
 
   } catch (error) {
-    const { message } = new Error('Proyecto no encontrado.');
-    return res.status(404).json({ message });
+    if (error.kind === 'ObjectId') {
+      const { message } = new Error('Proyecto no encontrado.');
+      return res.status(404).json({ message });
+    } else {
+      const { message } = new Error('Error al ver el proyecto.');
+      return res.status(500).json({ message, error });
+    }
   }
 }
 
