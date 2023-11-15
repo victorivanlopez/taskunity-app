@@ -11,4 +11,6 @@ router.route('/:id')
   .put(checkUserAuth, taskController.updateTask)
   .delete(checkUserAuth, taskController.deleteTask);
 
+router.post('/toggle/:id', checkUserAuth, taskController.toggleTask);
+
 export default router;
