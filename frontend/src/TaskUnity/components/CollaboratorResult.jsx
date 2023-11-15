@@ -8,16 +8,13 @@ export const CollaboratorResult = ({ collaborator }) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const { startAddCollaborator } = useTaskUnityContext();
 
-  const onAddCollaborator = async ({ target }) => {
+  const onAddCollaborator = async () => {
 
     const response = await startAddCollaborator(email);
 
     if (response?.error) {
       return setIsDisabled(true);
     }
-
-    target.textContent = 'Agregado';
-    setIsDisabled(true);
   }
 
   return (
