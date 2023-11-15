@@ -10,5 +10,6 @@ export * from './getProject';
 export * from './getProjects';
 export * from './removeCollaborator';
 export * from './searchCollaborator';
+export * from './toggleTask';
 export * from './updateProject';
 export * from './updateTask';
