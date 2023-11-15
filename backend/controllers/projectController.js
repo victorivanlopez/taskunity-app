@@ -2,7 +2,12 @@ import Project from '../models/Project.js';
 import User from '../models/User.js';
 
 export const getProjects = async (req, res) => {
-  const projects = await Project.find().where('creator').equals(req.user._id);
+  const projects = await Project.find({
+    '$or': [
+      { 'collaborators': { $in: req.user } },
+      { 'creator': { $in: req.user } },
+    ]
+  });
 
   res.json(projects);
 }
