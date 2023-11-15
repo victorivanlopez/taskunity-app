@@ -15,7 +15,7 @@ export const createTask = async (req, res) => {
     const newTask = new Task(req.body);
 
     const task = await newTask.save();
-    
+
     projectAssigned.tasks.push(task._id);
     await projectAssigned.save();
     return res.status(201).json({ message: 'Tarea creada con éxito.', task });
@@ -96,6 +96,31 @@ export const deleteTask = async (req, res) => {
 
   } catch (error) {
     const { message } = new Error('Error al eliminar la tarea.');
+    return res.status(500).json({ message });
+  }
+}
+
+export const toggleTask = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const task = await Task.findById(id).populate('project');
+    if (!task) {
+      const { message } = new Error('Tarea no encontrada.');
+      return res.status(404).json({ message });
+    }
+
+    if (task.project.creator.toString() !== req.user._id.toString() && !task.project.collaborators.some((collaborator => collaborator._id.toString() === req.user._id.toString()))) {
+      const { message } = new Error('No se tiene autorización para esta acción.');
+      return res.status(403).json({ message });
+    }
+
+    task.isCompleted = !task.isCompleted;
+    await task.save();
+    res.json(task);
+
+  } catch (error) {
+    const { message } = new Error('Ha ocurrido un error.');
     return res.status(500).json({ message });
   }
 }
