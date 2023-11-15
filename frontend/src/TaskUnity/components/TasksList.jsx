@@ -15,9 +15,11 @@ export const TasksList = ({ tasks }) => {
             <p>{tasksInProgress.length} Tarea(s)</p>
           </div>
           {
-            tasksInProgress.map(task => (
-              <TaskItem key={task._id} task={task} />
-            ))
+            tasksInProgress.length === 0
+              ? <p>No hay tareas pendientes.</p>
+              : tasksInProgress.map(task => (
+                <TaskItem key={task._id} task={task} />
+              ))
           }
         </div>
         <div className='space-y-4'>
@@ -26,9 +28,11 @@ export const TasksList = ({ tasks }) => {
             <p>{tasksCompleted.length} Tarea(s)</p>
           </div>
           {
-            tasksCompleted.map(task => (
-              <TaskItem key={task._id} task={task} />
-            ))
+            tasksCompleted.length === 0
+              ? <p>No hay tareas completadas.</p>
+              : tasksCompleted.map(task => (
+                <TaskItem key={task._id} task={task} />
+              ))
           }
         </div>
       </div>

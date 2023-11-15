@@ -10,6 +10,7 @@ import {
   getProjects,
   removeCollaborator,
   searchCollaborator,
+  toggleTask,
   updateProject,
   updateTask
 } from '../helpers';
@@ -147,7 +148,7 @@ export const TaskUnityProvider = ({ children }) => {
     if (!token) return;
 
     const response = await addCollaborator(email, project._id, token);
-    
+
     if (response?.error) {
       showAlert(response);
       return response;
@@ -179,6 +180,24 @@ export const TaskUnityProvider = ({ children }) => {
 
     setDataToDelete({});
     setIsOpenModalAlert(false);
+  }
+
+  const startToggleTask = async (id) => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    const response = await toggleTask(id, token);
+
+    if (response?.error) {
+      return showAlert(response);
+    }
+
+    showAlert({});
+    const projectUpdated = { ...project };
+
+    projectUpdated.tasks = projectUpdated.tasks.map(task => (task._id === response._id) ? response : task);
+    setProject(projectUpdated);
+    setTask({});
   }
 
   const onShowModal = (type = '') => {
@@ -237,6 +256,7 @@ export const TaskUnityProvider = ({ children }) => {
         startSearchCollaborator,
         startAddCollaborator,
         startDeleteCollaborator,
+        startToggleTask,
         task,
         typeModal,
       }}
