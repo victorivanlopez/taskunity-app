@@ -136,3 +136,31 @@ export const addCollaborator = async (req, res) => {
     }
   }
 }
+
+export const removeCollaborator = async (req, res) => {
+  const idProject = req.params.id;
+  const idCollaborator = req.body.id;
+
+  try {
+    const project = await Project.findById(idProject);
+
+    if (project.creator.toString() !== req.user._id.toString()) {
+      const { message } = new Error('No tienes acceso a este proyecto.');
+      return res.status(401).json({ message });
+    }
+
+    project.collaborators.pull(idCollaborator);
+    await project.save();
+
+    res.json({ message: 'Colaborador eliminado correctamente.' });
+
+  } catch (error) {
+    if (error.kind === 'ObjectId') {
+      const { message } = new Error('Proyecto no encontrado.');
+      return res.status(404).json({ message });
+    } else {
+      const { message } = new Error('Error al crear agregar el colaborador.');
+      return res.status(500).json({ message, error });
+    }
+  }
+}
