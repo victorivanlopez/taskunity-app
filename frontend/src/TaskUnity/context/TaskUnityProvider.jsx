@@ -144,9 +144,18 @@ export const TaskUnityProvider = ({ children }) => {
     if (!token) return;
 
     const response = await addCollaborator(email, project._id, token);
-    //TODO: Modificar en el state los colaboradores
+    
+    if (response?.error) {
+      showAlert(response);
+      return response;
+    }
 
-    showAlert(response);
+    const projectUpdated = { ...project };
+
+    projectUpdated.collaborators = [...projectUpdated.collaborators, collaborator];
+
+    setProject(projectUpdated);
+    setIsOpenModal(false);
     return response;
   }
 
