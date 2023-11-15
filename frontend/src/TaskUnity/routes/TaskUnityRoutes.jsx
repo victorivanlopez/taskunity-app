@@ -1,9 +1,7 @@
 import { 
   DashboardPage, 
   ProjectsPage, 
-  ProjectNewPage, 
-  ProjectPage, 
-  ProjectEditPage 
+  ProjectPage,
 } from '../pages';
 
 //TODO: agregar pagina 404
@@ -21,15 +19,7 @@ export const ProjectsRoutes = [
     element: <ProjectsPage />
   },
   {
-    path: 'new',
-    element: <ProjectNewPage />
-  },
-  {
     path: ':id',
     element: <ProjectPage />
-  },
-  {
-    path: ':id/edit',
-    element: <ProjectEditPage />
   },
 ]
