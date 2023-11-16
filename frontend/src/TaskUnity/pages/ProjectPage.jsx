@@ -22,7 +22,7 @@ export const ProjectPage = () => {
 
   useEffect(() => {
     startGetProject(id);
-  }, [])
+  }, [id])
 
   if (isLoading) return <Spinner />
 
