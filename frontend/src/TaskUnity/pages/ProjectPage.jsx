@@ -26,7 +26,7 @@ export const ProjectPage = () => {
 
   if (isLoading) return <Spinner />
 
-  if (alert?.error) return <Alert alert={alert} />
+  if (alert?.error && !isAdmin) return <Alert alert={alert} />
 
   const { name } = project;
 
@@ -52,7 +52,7 @@ export const ProjectPage = () => {
           ? <TabsProject />
           : <TabsProjectCollaborator />
       }
-      
+
 
       <Modal>
         {

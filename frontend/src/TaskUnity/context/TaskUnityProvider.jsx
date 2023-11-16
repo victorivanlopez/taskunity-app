@@ -40,6 +40,7 @@ export const TaskUnityProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (!token) return;
     const projects = await getProjects(token);
+    setAlert({});
     setIsLoading(false);
     setProjects(projects);
   }
