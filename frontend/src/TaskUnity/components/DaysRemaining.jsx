@@ -9,7 +9,7 @@ export const DaysRemaining = ({ date }) => {
       </svg>
       {
         calculateDaysRemaining(date) < 0
-          ? <p className='font-bold'>{`Ha finalizado el tiempo`}</p>
+          ? <p className='font-bold text-red-500'>Ha finalizado.</p>
           : <p className='font-bold'>{`Finaliza en ${calculateDaysRemaining(date)} día(s)`}</p>
       }
     </div>
