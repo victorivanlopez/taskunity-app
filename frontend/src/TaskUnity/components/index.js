@@ -13,6 +13,7 @@ export * from './Modal';
 export * from './ModalAlert';
 export * from './ProjectItem';
 export * from './ProjectsList';
+export * from './SearchProject';
 export * from './SidebarAdmin';
 export * from './Spinner';
 export * from './TabCollaborators';
