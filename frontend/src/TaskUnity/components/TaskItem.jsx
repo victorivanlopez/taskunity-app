@@ -9,7 +9,7 @@ const prioritiesColors = {
 
 export const TaskItem = ({ task }) => {
 
-  const { _id, name, description, dueDate, priority, isCompleted } = task;
+  const { _id, name, description, dueDate, priority, isCompleted, completedBy } = task;
   const { onModalEditingTask, onShowModalAlert, addDataToDelete, startToggleTask } = useTaskUnityContext();
   const { isAdmin } = useAdmin();
 
@@ -29,7 +29,7 @@ export const TaskItem = ({ task }) => {
         <div className='border-t border-gray-200 pt-4 text-sm mt-2 flex justify-between text-[#545454]'>
           {
             isCompleted
-              ? <p className='font-bold text-green-500'>Completada</p>
+              ? <p className='font-bold text-green-500'>Completada por: {completedBy?.name}</p>
               : <DaysRemaining date={dueDate} />
           }
 
@@ -47,7 +47,7 @@ export const TaskItem = ({ task }) => {
               </button>
             </li>
             {
-              (isAdmin) &&
+              (isAdmin && !isCompleted) &&
               <>
                 <li>
                   <button
