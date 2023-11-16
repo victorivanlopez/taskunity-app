@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import { DaysRemaining } from './DaysRemaining';
-import { useTaskUnityContext } from '../../hooks';
+import { useAuth, useTaskUnityContext } from '../../hooks';
 
 export const ProjectItem = ({ project }) => {
 
-  const { name, client, _id, deadline, description } = project;
-
+  const { auth } = useAuth();
   const { onShowModalAlert, addDataToDelete, onModalEditingProject } = useTaskUnityContext();
+
+  const { name, client, _id, deadline, description, creator } = project;
+
+  console.log({ creator, auth })
 
 
   const onClickDelete = () => {
@@ -16,7 +19,13 @@ export const ProjectItem = ({ project }) => {
 
   return (
     <>
-      <div className='p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors'>
+      <div className='relative p-8 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors'>
+        <div className='absolute top-4 right-4'>
+          {
+            (auth.user._id !== creator)
+            && <p className='text-xs font-bold p-1 bg-[#EAF1F7] text-[#423F98] rounded'>Colaborador</p>
+          }
+        </div>
         <div className='flex flex-col justify-center min-h-full'>
           <Link
             to={_id}
