@@ -90,8 +90,10 @@ export const deleteTask = async (req, res) => {
       const { message } = new Error('No se tiene autorización para eliminar la tarea indicada.');
       return res.status(403).json({ message });
     }
+    const project = await Project.findById(task.project);
+    project.tasks.pull(task._id);
 
-    await task.deleteOne();
+    await Promise.allSettled([await project.save(), await task.deleteOne()]);
     res.json({ message: 'Tarea eliminada' });
 
   } catch (error) {
