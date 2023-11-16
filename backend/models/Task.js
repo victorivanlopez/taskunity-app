@@ -29,6 +29,11 @@ const taskSchema = new mongoose.Schema({
     ref: 'Project',
     required: true,
   },
+  completedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
 });
 
 const Task = mongoose.model('Task', taskSchema);

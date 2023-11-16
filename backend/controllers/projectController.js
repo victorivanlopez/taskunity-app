@@ -31,7 +31,7 @@ export const getProject = async (req, res) => {
 
   try {
     const project = await Project.findById(id)
-      .populate('tasks')
+      .populate({ path: 'tasks', populate: { path: 'completedBy', select: 'name' } })
       .populate('collaborators', 'name email');
 
     if (project.creator.toString() !== req.user._id.toString() && !project.collaborators.some((collaborator => collaborator._id.toString() === req.user._id.toString()))) {

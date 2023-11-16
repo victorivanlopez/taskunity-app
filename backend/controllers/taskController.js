@@ -118,8 +118,15 @@ export const toggleTask = async (req, res) => {
     }
 
     task.isCompleted = !task.isCompleted;
+    task.completedBy = req.user._id;
+    
     await task.save();
-    res.json(task);
+
+    const taskSaved = await Task.findById(id)
+      .populate('project')
+      .populate('completedBy');
+
+    res.json(taskSaved);
 
   } catch (error) {
     const { message } = new Error('Ha ocurrido un error.');
