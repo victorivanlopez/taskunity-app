@@ -9,9 +9,6 @@ export const ProjectItem = ({ project }) => {
 
   const { name, client, _id, deadline, description, creator } = project;
 
-  console.log({ creator, auth })
-
-
   const onClickDelete = () => {
     onShowModalAlert();
     addDataToDelete(project);
