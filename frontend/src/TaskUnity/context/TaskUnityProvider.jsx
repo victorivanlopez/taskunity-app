@@ -109,7 +109,7 @@ export const TaskUnityProvider = ({ children }) => {
       return response;
     }
     const response = await createTask(task, token);
-    projectUpdated.tasks = [...project.tasks, response.task];
+    projectUpdated.tasks = [...projectUpdated.tasks, response.task];
     setProject(projectUpdated);
     setIsOpenModal(false);
     return response;
