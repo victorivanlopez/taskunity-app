@@ -5,6 +5,7 @@ import userRouter from './routes/userRoutes.js';
 import projectRouter from './routes/projectRoutes.js';
 import taskRouter from './routes/taskRoutes.js';
 import { server, front } from './config/config.js';
+import { Server } from 'socket.io';
 
 const app = express();
 app.use(express.json());
@@ -31,6 +32,23 @@ app.use('/api/users', userRouter);
 app.use('/api/projects', projectRouter);
 app.use('/api/tasks', taskRouter);
 
-app.listen(server.PORT, () => {
+const httpServer = app.listen(server.PORT, () => {
   console.log(`Example app listening on port ${server.PORT}`)
+});
+
+const io = new Server(httpServer, {
+  pingTimeout: 60000,
+  cors: {
+    origin: front.URL,
+  },
+});
+
+io.on('connection', (socket) => {
+  socket.on('open project', (project) => {
+    socket.join(project);
+  });
+
+  socket.on('new task', ({ task }) => {
+    socket.to(task.project).emit('task created', task);
+  });
 });
