@@ -36,6 +36,7 @@ const httpServer = app.listen(server.PORT, () => {
   console.log(`Example app listening on port ${server.PORT}`)
 });
 
+// Socket.io
 const io = new Server(httpServer, {
   pingTimeout: 60000,
   cors: {
@@ -54,5 +55,9 @@ io.on('connection', (socket) => {
 
   socket.on('delete task', (task) => {
     socket.to(task.project).emit('task deleted', task);
+  });
+
+  socket.on('update task', (task) => {
+    socket.to(task.project).emit('task updated', task);
   });
 });

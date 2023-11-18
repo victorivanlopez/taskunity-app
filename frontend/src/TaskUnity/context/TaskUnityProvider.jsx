@@ -109,9 +109,8 @@ export const TaskUnityProvider = ({ children }) => {
 
     if (task.id) {
       const response = await updateTask(task, token);
-      const projectUpdated = { ...project };
-      projectUpdated.tasks = projectUpdated.tasks.map(task => (task._id === response._id) ? response : task);
-      setProject(projectUpdated);
+
+      socket.emit('update task', response);
       setIsOpenModal(false);
       return response;
     }
@@ -240,6 +239,12 @@ export const TaskUnityProvider = ({ children }) => {
     setProject(projectUpdated);
   }
 
+  const updateTaskToState = (taskUpdated) => {
+    const projectUpdated = { ...project };
+    projectUpdated.tasks = projectUpdated.tasks.map(task => (task._id === taskUpdated._id) ? taskUpdated : task);
+    setProject(projectUpdated);
+  }
+
   const deteleTaskToState = (task) => {
     const projectUpdated = { ...project };
     projectUpdated.tasks = projectUpdated.tasks.filter(taskState => taskState._id !== task._id);
@@ -277,6 +282,7 @@ export const TaskUnityProvider = ({ children }) => {
         typeModal,
         addTaskToState,
         deteleTaskToState,
+        updateTaskToState,
       }}
     >
       {children}

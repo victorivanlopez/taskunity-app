@@ -20,7 +20,16 @@ let socket;
 export const ProjectPage = () => {
 
   const { id } = useParams();
-  const { startGetProject, project, isLoading, typeModal, alert, addTaskToState, deteleTaskToState } = useTaskUnityContext();
+  const { 
+    startGetProject, 
+    project, 
+    isLoading, 
+    typeModal, 
+    alert, 
+    addTaskToState, 
+    deteleTaskToState, 
+    updateTaskToState,
+  } = useTaskUnityContext();
   const { isAdmin } = useAdmin();
 
   useEffect(() => {
@@ -42,6 +51,12 @@ export const ProjectPage = () => {
     socket.on('task deleted', (task) => {
       if (task.project === project._id) {
         deteleTaskToState(task);
+      }
+    });
+
+    socket.on('task updated', (taskUpdated) => {
+      if (taskUpdated.project === project._id) {
+        updateTaskToState(taskUpdated);
       }
     });
   })
