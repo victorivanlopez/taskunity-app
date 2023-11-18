@@ -196,10 +196,7 @@ export const TaskUnityProvider = ({ children }) => {
     }
 
     showAlert({});
-    const projectUpdated = { ...project };
-
-    projectUpdated.tasks = projectUpdated.tasks.map(task => (task._id === response._id) ? response : task);
-    setProject(projectUpdated);
+    socket.emit('toggle task', response);
     setTask({});
   }
 
@@ -251,6 +248,12 @@ export const TaskUnityProvider = ({ children }) => {
     setProject(projectUpdated);
   }
 
+  const toggleTaskToState = (task) => {
+    const projectUpdated = { ...project };
+    projectUpdated.tasks = projectUpdated.tasks.map(taskState => (taskState._id === task._id) ? task : taskState);
+    setProject(projectUpdated);
+  }
+
   return (
     <TaskUnityContext.Provider
       value={{
@@ -283,6 +286,7 @@ export const TaskUnityProvider = ({ children }) => {
         addTaskToState,
         deteleTaskToState,
         updateTaskToState,
+        toggleTaskToState,
       }}
     >
       {children}

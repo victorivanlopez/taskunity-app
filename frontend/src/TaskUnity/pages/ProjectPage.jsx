@@ -29,6 +29,7 @@ export const ProjectPage = () => {
     addTaskToState, 
     deteleTaskToState, 
     updateTaskToState,
+    toggleTaskToState,
   } = useTaskUnityContext();
   const { isAdmin } = useAdmin();
 
@@ -57,6 +58,11 @@ export const ProjectPage = () => {
     socket.on('task updated', (taskUpdated) => {
       if (taskUpdated.project === project._id) {
         updateTaskToState(taskUpdated);
+      }
+    });
+    socket.on('task toggled', (task) => {
+      if (task.project._id === project._id) {
+        toggleTaskToState(task);
       }
     });
   })
