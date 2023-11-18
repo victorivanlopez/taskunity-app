@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import io from 'socket.io-client';
 import { useAdmin, useTaskUnityContext } from '../../hooks';
 import {
   Spinner,
@@ -14,15 +15,31 @@ import {
 } from '../components';
 import { Alert } from '../../components';
 
+let socket;
+
 export const ProjectPage = () => {
 
   const { id } = useParams();
-  const { startGetProject, project, isLoading, typeModal, alert } = useTaskUnityContext();
+  const { startGetProject, project, isLoading, typeModal, alert, addTaskToState } = useTaskUnityContext();
   const { isAdmin } = useAdmin();
 
   useEffect(() => {
     startGetProject(id);
   }, [id])
+
+  useEffect(() => {
+    socket = io(import.meta.env.VITE_BACKEND_URL);
+    socket.emit('open project', id);
+  }, [])
+
+  useEffect(() => {
+    socket.on('task created', (newTask) => {
+      if(newTask.project === project._id) {
+        addTaskToState(newTask);
+      }
+    })
+  })
+  
 
   if (isLoading) return <Spinner />
 

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import io from 'socket.io-client';
 import { TaskUnityContext } from './TaskUnityContext';
 import {
   addCollaborator,
@@ -15,6 +16,8 @@ import {
   updateTask
 } from '../helpers';
 
+let socket;
+
 export const TaskUnityProvider = ({ children }) => {
 
   //TODO: Mejorar obtención de token para no repetir tanto código
@@ -30,6 +33,11 @@ export const TaskUnityProvider = ({ children }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [typeModal, setTypeModal] = useState('');
   const [isOpenModalAlert, setIsOpenModalAlert] = useState(false);
+
+  useEffect(() => {
+    socket = io(import.meta.env.VITE_BACKEND_URL);
+  }, [])
+
 
   const showAlert = (alert) => {
     setAlert(alert);
@@ -99,19 +107,17 @@ export const TaskUnityProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (!token) return;
 
-    const projectUpdated = { ...project };
-
     if (task.id) {
       const response = await updateTask(task, token);
+      const projectUpdated = { ...project };
       projectUpdated.tasks = projectUpdated.tasks.map(task => (task._id === response._id) ? response : task);
       setProject(projectUpdated);
       setIsOpenModal(false);
       return response;
     }
     const response = await createTask(task, token);
-    projectUpdated.tasks = [...projectUpdated.tasks, response.task];
-    setProject(projectUpdated);
     setIsOpenModal(false);
+    socket.emit('new task', response);
     return response;
   }
 
@@ -231,6 +237,12 @@ export const TaskUnityProvider = ({ children }) => {
     setIsOpenModal(true);
   }
 
+  const addTaskToState = (newTask) => {
+    const projectUpdated = { ...project };
+    projectUpdated.tasks = [...projectUpdated.tasks, newTask];
+    setProject(projectUpdated);
+  }
+
   return (
     <TaskUnityContext.Provider
       value={{
@@ -260,6 +272,7 @@ export const TaskUnityProvider = ({ children }) => {
         startToggleTask,
         task,
         typeModal,
+        addTaskToState,
       }}
     >
       {children}
