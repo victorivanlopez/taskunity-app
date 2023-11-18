@@ -48,7 +48,11 @@ io.on('connection', (socket) => {
     socket.join(project);
   });
 
-  socket.on('new task', ({ task }) => {
+  socket.on('create task', ({ task }) => {
     socket.to(task.project).emit('task created', task);
+  });
+
+  socket.on('delete task', (task) => {
+    socket.to(task.project).emit('task deleted', task);
   });
 });

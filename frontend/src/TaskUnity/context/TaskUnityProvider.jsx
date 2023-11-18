@@ -117,7 +117,7 @@ export const TaskUnityProvider = ({ children }) => {
     }
     const response = await createTask(task, token);
     setIsOpenModal(false);
-    socket.emit('new task', response);
+    socket.emit('create task', response);
     return response;
   }
 
@@ -125,12 +125,9 @@ export const TaskUnityProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (!token) return;
 
-    const projectUpdated = { ...project };
-
     await deleteTask(dataToDelete._id, token);
 
-    projectUpdated.tasks = projectUpdated.tasks.filter(task => task._id !== dataToDelete._id);
-    setProject(projectUpdated);
+    socket.emit('delete task', dataToDelete);
     setDataToDelete({});
     setIsOpenModalAlert(false);
   }
@@ -243,6 +240,12 @@ export const TaskUnityProvider = ({ children }) => {
     setProject(projectUpdated);
   }
 
+  const deteleTaskToState = (task) => {
+    const projectUpdated = { ...project };
+    projectUpdated.tasks = projectUpdated.tasks.filter(taskState => taskState._id !== task._id);
+    setProject(projectUpdated);
+  }
+
   return (
     <TaskUnityContext.Provider
       value={{
@@ -273,6 +276,7 @@ export const TaskUnityProvider = ({ children }) => {
         task,
         typeModal,
         addTaskToState,
+        deteleTaskToState,
       }}
     >
       {children}

@@ -20,7 +20,7 @@ let socket;
 export const ProjectPage = () => {
 
   const { id } = useParams();
-  const { startGetProject, project, isLoading, typeModal, alert, addTaskToState } = useTaskUnityContext();
+  const { startGetProject, project, isLoading, typeModal, alert, addTaskToState, deteleTaskToState } = useTaskUnityContext();
   const { isAdmin } = useAdmin();
 
   useEffect(() => {
@@ -34,12 +34,18 @@ export const ProjectPage = () => {
 
   useEffect(() => {
     socket.on('task created', (newTask) => {
-      if(newTask.project === project._id) {
+      if (newTask.project === project._id) {
         addTaskToState(newTask);
       }
-    })
+    });
+
+    socket.on('task deleted', (task) => {
+      if (task.project === project._id) {
+        deteleTaskToState(task);
+      }
+    });
   })
-  
+
 
   if (isLoading) return <Spinner />
 
