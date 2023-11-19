@@ -254,6 +254,12 @@ export const TaskUnityProvider = ({ children }) => {
     setProject(projectUpdated);
   }
 
+  const logoutTaskUnity = () => {
+    setProjects([]);
+    setProject({});
+    setAlert({});
+  }
+
   return (
     <TaskUnityContext.Provider
       value={{
@@ -287,6 +293,7 @@ export const TaskUnityProvider = ({ children }) => {
         deteleTaskToState,
         updateTaskToState,
         toggleTaskToState,
+        logoutTaskUnity,
       }}
     >
       {children}
