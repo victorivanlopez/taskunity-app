@@ -1,9 +1,11 @@
-import { HeaderLanding } from '../components';
+import { HeaderLanding, HeroSection } from '../components';
 
 export const LandingPage = () => {
   return (
     <>
       <HeaderLanding />
+
+      <HeroSection />
     </>
   )
 }
