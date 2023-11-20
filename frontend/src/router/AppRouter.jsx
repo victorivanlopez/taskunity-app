@@ -4,15 +4,19 @@ import { AuthLayout } from '../auth/layout/AuthLayout';
 import { AdminLayout } from '../TaskUnity/layout/AdminLayout';
 import AuthRoutes from '../auth/routes/AuthRoutes';
 import { DashboardRoutes, ProjectsRoutes } from '../TaskUnity/routes/TaskUnityRoutes';
+import { LandingPage } from '../TaskUnity/pages';
 
 const AppRouter = [
   {
     path: '/',
-    element: <h1>TaskUnity Landing</h1>
+    element:
+      <PublicRoute>
+        <LandingPage />
+      </PublicRoute>
   },
   {
     path: '/auth',
-    element: 
+    element:
       <PublicRoute>
         <AuthLayout />
       </PublicRoute>,
