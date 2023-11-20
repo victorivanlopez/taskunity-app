@@ -9,6 +9,8 @@ export * from './FormCollaborator';
 export * from './FormProject';
 export * from './FormTask';
 export * from './HeaderAdmin';
+export * from './HeaderLanding';
+export * from './HeroSection';
 export * from './Modal';
 export * from './ModalAlert';
 export * from './ProjectItem';
