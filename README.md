@@ -1,1 +1,1 @@
-# TaskUnity | MERN Stack - React Router DOM - Tailwind CSS - Vite
+# TaskUnity | MERN Stack - React Router DOM - Socket.IO - Tailwind CSS - Vite
