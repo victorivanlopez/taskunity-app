@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react';
 import { useTaskUnityContext } from '../../hooks/useTaskUnityContext';
 import { Spinner } from '../components/Spinner';
 import { useAuth } from '../../hooks/useAuth';
+import { TasksStatsPie } from '../components/TasksStatsPie';
 
 export const DashboardPage = () => {
 
@@ -54,6 +55,14 @@ export const DashboardPage = () => {
               <p className='font-bold'>Tareas creadas</p>
               <p className='text-3xl font-bold text-[#423F98]'>{tasksQty}</p>
             </div>
+          </div>
+        </div>
+
+        <div className='my-10'>
+          <h4 className='text-xl font-bold mb-5'>Resumen de las tareas</h4>
+
+          <div className='mt-5 max-w-sm mx-auto'>
+            <TasksStatsPie />
           </div>
         </div>
       </div>
