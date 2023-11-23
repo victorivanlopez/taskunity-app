@@ -59,9 +59,9 @@ export const DashboardPage = () => {
         </div>
 
         <div className='my-10'>
-          <h4 className='text-xl font-bold mb-5'>Resumen de las tareas</h4>
+          <h4 className='text-2xl font-bold mb-10'>Resumen de las tareas</h4>
 
-          <div className='mt-5 max-w-sm mx-auto'>
+          <div className='max-w-sm mx-auto'>
             <TasksStatsPie />
           </div>
         </div>
