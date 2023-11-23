@@ -7,8 +7,8 @@ export const getProjects = async (req, res) => {
       { 'collaborators': { $in: req.user } },
       { 'creator': { $in: req.user } },
     ]
-  });
-
+  }).populate({path: 'tasks', select: 'isCompleted' });
+  
   res.json(projects);
 }
 
