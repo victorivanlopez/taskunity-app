@@ -1,5 +1,6 @@
 import Project from '../models/Project.js';
 import User from '../models/User.js';
+import Task from '../models/Task.js'; // Asegúrate de importar el modelo de Task
 
 export const getProjects = async (req, res) => {
   const projects = await Project.find({
@@ -81,6 +82,7 @@ export const deleteProject = async (req, res) => {
       return res.status(401).json({ message });
     }
 
+    await Task.deleteMany({ _id: { $in: project.tasks } });
     await project.deleteOne();
     res.json({ message: 'Proyecto eliminado' });
 
