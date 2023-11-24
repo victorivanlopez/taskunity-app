@@ -6,6 +6,7 @@ export * from './deleteProject';
 export * from './deleteTask';
 export * from './formatDate';
 export * from './getCurrentDate';
+export * from './getMonthName';
 export * from './getProject';
 export * from './getProjects';
 export * from './removeCollaborator';
