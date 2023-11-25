@@ -29,7 +29,7 @@ export const SearchProject = () => {
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 sm:text-sm">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-[#545454]">
-              <SearchIcon size='5' />
+              <SearchIcon styles='w-5 h-5' />
               <span className="sr-only">Icono buscar</span>
             </div>
             <Combobox.Input

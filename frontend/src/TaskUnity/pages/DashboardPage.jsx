@@ -27,21 +27,21 @@ export const DashboardPage = () => {
       <div className='my-10'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
           <div className='flex gap-4 items-center p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors text-[#545454]'>
-            <ProjectIcon size='8' />
+            <ProjectIcon styles='w-8 h-8' />
             <div>
               <p className='font-bold'>Total de proyectos</p>
               <p className='text-3xl font-bold text-[#423F98]'>{projectsQty}</p>
             </div>
           </div>
           <div className='flex gap-4 items-center p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors text-[#545454]'>
-            <CollaboratorsIcon size='8' />
+            <CollaboratorsIcon styles='w-8 h-8' />
             <div>
               <p className='font-bold'>Proyectos colaborando</p>
               <p className='text-3xl font-bold text-[#423F98]'>{projectsCollaboratorQty}</p>
             </div>
           </div>
           <div className='flex gap-4 items-center p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors text-[#545454]'>
-            <TaskIcon size='8' />
+            <TaskIcon styles='w-8 h-8' />
             <div>
               <p className='font-bold'>Tareas creadas</p>
               <p className='text-3xl font-bold text-[#423F98]'>{tasksQty}</p>

@@ -33,7 +33,7 @@ export const SidebarAdmin = () => {
         className="absolute top-4 z-50 p-2 mt-2 ml-3 text-sm text-[#423F98] rounded-lg sm:hidden focus:outline-none focus:ring-2 focus:ring-[#EAF1F7]"
         onClick={showSidebar}
       >
-        <BarsIcon size='7' />
+        <BarsIcon styles='w-7 h-7' />
         <span className="sr-only">Mostrar menú</span>
 
       </button>
