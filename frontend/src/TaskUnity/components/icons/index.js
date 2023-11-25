@@ -8,4 +8,5 @@ export * from './EditIcon';
 export * from './LogoutIcon';
 export * from './PlusIcon';
 export * from './ProjectIcon';
+export * from './SearchIcon';
 export * from './TaskIcon';
