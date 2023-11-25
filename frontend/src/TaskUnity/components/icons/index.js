@@ -1,5 +1,6 @@
 export * from './BarsIcon';
 export * from './CalendarIcon';
+export * from './ChartIcon';
 export * from './CheckIcon';
 export * from './CollaboratorsIcon';
 export * from './DeleteIcon';
