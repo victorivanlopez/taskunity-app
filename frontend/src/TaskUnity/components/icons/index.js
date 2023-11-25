@@ -1,3 +1,4 @@
+export * from './CheckIcon';
 export * from './CollaboratorsIcon';
 export * from './DeleteIcon';
 export * from './EditIcon';
