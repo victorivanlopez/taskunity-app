@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Combobox, Transition } from '@headlessui/react';
 import { useTaskUnityContext } from '../../hooks';
+import { SearchIcon } from './icons';
 
 export const SearchProject = () => {
 
@@ -27,14 +28,12 @@ export const SearchProject = () => {
       <Combobox onChange={(project) => navigate(`/projects/${project._id}`)}>
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 sm:text-sm">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg className="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-              </svg>
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-[#545454]">
+              <SearchIcon size='5' />
               <span className="sr-only">Icono buscar</span>
             </div>
             <Combobox.Input
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none focus:border-[#B0A6EB]"
+              className="block w-full p-2 pl-10 text-sm text-[#545454] border border-gray-300 rounded-lg bg-gray-50 outline-none focus:border-[#B0A6EB]"
               placeholder='Buscar proyecto'
               onChange={(event) => setQuery(event.target.value)}
             />
@@ -48,7 +47,7 @@ export const SearchProject = () => {
           >
             <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
               {filteredProjects.length === 0 && query !== '' ? (
-                <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
+                <div className="relative cursor-default select-none px-4 py-2 text-[#545454]">
                   No se encontró ningún proyecto.
                 </div>
               ) : (
