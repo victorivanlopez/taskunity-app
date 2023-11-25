@@ -5,6 +5,7 @@ export * from './CheckIcon';
 export * from './CollaboratorsIcon';
 export * from './DeleteIcon';
 export * from './EditIcon';
+export * from './LogoutIcon';
 export * from './PlusIcon';
 export * from './ProjectIcon';
 export * from './TaskIcon';
