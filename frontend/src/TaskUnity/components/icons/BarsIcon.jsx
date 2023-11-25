@@ -1,4 +1,3 @@
-import React from 'react'
 
 export const BarsIcon = ({ size = '6' }) => {
   return (
