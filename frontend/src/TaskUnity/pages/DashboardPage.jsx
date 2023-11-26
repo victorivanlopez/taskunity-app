@@ -52,12 +52,12 @@ export const DashboardPage = () => {
         <div className='my-10 grid grid-cols-1 lg:grid-cols-6 gap-6'>
 
           <div className='lg:col-span-4 p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors'>
-            <h4 className='text-2xl font-bold mb-5'>Resumen de proyectos</h4>
+            <h4 className='text-2xl font-bold mb-5'>Resumen proyectos</h4>
 
             <ProjectStatsByMonth />
           </div>
           <div className='lg:col-span-2 p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors'>
-            <h4 className='text-2xl font-bold mb-5'>Resumen de tareas</h4>
+            <h4 className='text-2xl font-bold mb-5'>Finalización de tareas</h4>
 
             <TaskStats />
           </div>
