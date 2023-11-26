@@ -30,21 +30,21 @@ export const DashboardPage = () => {
             <ProjectIcon styles='w-8 h-8' />
             <div>
               <p className='font-bold'>Total de proyectos</p>
-              <p className='text-3xl font-bold text-[#423F98]'>{projectsQty}</p>
+              <p className='text-3xl font-bold text-taskunity-800'>{projectsQty}</p>
             </div>
           </div>
           <div className='flex gap-4 items-center p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors text-[#545454]'>
             <CollaboratorsIcon styles='w-8 h-8' />
             <div>
               <p className='font-bold'>Proyectos colaborando</p>
-              <p className='text-3xl font-bold text-[#423F98]'>{projectsCollaboratorQty}</p>
+              <p className='text-3xl font-bold text-taskunity-800'>{projectsCollaboratorQty}</p>
             </div>
           </div>
           <div className='flex gap-4 items-center p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors text-[#545454]'>
             <TaskIcon styles='w-8 h-8' />
             <div>
               <p className='font-bold'>Tareas creadas</p>
-              <p className='text-3xl font-bold text-[#423F98]'>{tasksQty}</p>
+              <p className='text-3xl font-bold text-taskunity-800'>{tasksQty}</p>
             </div>
           </div>
         </div>
