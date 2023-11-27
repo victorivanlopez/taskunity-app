@@ -35,9 +35,10 @@ export const TaskUnityProvider = ({ children }) => {
   const [isOpenModalAlert, setIsOpenModalAlert] = useState(false);
 
   useEffect(() => {
-    socket = io(import.meta.env.VITE_BACKEND_URL);
-  }, [])
-
+    if(project?._id) {
+      socket = io(import.meta.env.VITE_BACKEND_URL);
+    }
+  }, [project])
 
   const showAlert = (alert) => {
     setAlert(alert);
