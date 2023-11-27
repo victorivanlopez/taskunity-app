@@ -31,7 +31,7 @@ export const ProjectsPage = () => {
         {
           (projects.length > 0)
             ? <ProjectsList projects={projects} />
-            : <p>No hay proyectos.</p>
+            : <p>No hay proyectos aquí aún.</p>
         }
       </div>
 
