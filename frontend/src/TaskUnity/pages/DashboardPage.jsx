@@ -43,7 +43,7 @@ export const DashboardPage = () => {
           <div className='flex gap-4 items-center p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 transition-colors text-[#545454]'>
             <TaskIcon styles='w-8 h-8' />
             <div>
-              <p className='font-bold'>Tareas creadas</p>
+              <p className='font-bold'>Total de tareas</p>
               <p className='text-3xl font-bold text-taskunity-800'>{tasksQty}</p>
             </div>
           </div>
