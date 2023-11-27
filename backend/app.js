@@ -49,8 +49,7 @@ io.on('connection', (socket) => {
     socket.join(project);
   });
 
-  //TODO: eliminar objeto message en el resultado de create task
-  socket.on('create task', ({ task }) => {
+  socket.on('create task', (task) => {
     socket.to(task.project).emit('task created', task);
   });
 
