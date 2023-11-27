@@ -35,7 +35,7 @@ export const LoginPage = () => {
     }
     setAlert({});
     login(response);
-    navigate('/dashboard', { replace: true });
+    navigate('/projects', { replace: true });
   }
 
   return (
