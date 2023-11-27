@@ -32,10 +32,6 @@ const AuthRoutes = [
     index: true,
     element: <Navigate to='/auth/login' />
   },
-  {
-    path: '*',
-    element: <Navigate to='/auth/login' />
-  },
 ]
 
 export default AuthRoutes;
