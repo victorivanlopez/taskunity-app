@@ -4,7 +4,7 @@ import { AuthLayout } from '../auth/layout/AuthLayout';
 import { AdminLayout } from '../TaskUnity/layout/AdminLayout';
 import AuthRoutes from '../auth/routes/AuthRoutes';
 import { DashboardRoutes, ProjectsRoutes } from '../TaskUnity/routes/TaskUnityRoutes';
-import { LandingPage } from '../TaskUnity/pages';
+import { ErrorPage, LandingPage } from '../TaskUnity/pages';
 
 const AppRouter = [
   {
@@ -12,8 +12,10 @@ const AppRouter = [
     element:
       <PublicRoute>
         <LandingPage />
-      </PublicRoute>
+      </PublicRoute>,
+    errorElement: <ErrorPage />
   },
+
   {
     path: '/auth',
     element:
@@ -21,6 +23,7 @@ const AppRouter = [
         <AuthLayout />
       </PublicRoute>,
     children: AuthRoutes,
+    errorElement: <ErrorPage />
   },
   {
     path: '/dashboard',
