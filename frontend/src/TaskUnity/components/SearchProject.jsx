@@ -1,16 +1,14 @@
 import { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Combobox, Transition } from '@headlessui/react';
 import { useTaskUnityContext } from '../../hooks';
 import { SearchIcon } from './icons';
+import { Combobox, Transition } from '@headlessui/react';
 
 export const SearchProject = () => {
 
   const [query, setQuery] = useState('');
 
   const { projects } = useTaskUnityContext();
-
-  //TODO: tener en localstorage los proyectos
 
   const navigate = useNavigate();
 
