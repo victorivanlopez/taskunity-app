@@ -1,10 +1,8 @@
-import { 
-  DashboardPage, 
-  ProjectsPage, 
+import {
+  DashboardPage,
+  ProjectsPage,
   ProjectPage,
 } from '../pages';
-
-//TODO: agregar pagina 404
 
 export const DashboardRoutes = [
   {
