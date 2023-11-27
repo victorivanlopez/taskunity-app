@@ -12,11 +12,10 @@ export const ConfirmAccountPage = () => {
   const confirmingUser = async () => {
     const response = await confirmUser(token);
     setAlert(response);
-    setIsConfirmed(true);
-
     if (response?.error) {
-      setIsConfirmed(false);
+      return setIsConfirmed(false);
     }
+    setIsConfirmed(true);
   }
 
   useEffect(() => {
