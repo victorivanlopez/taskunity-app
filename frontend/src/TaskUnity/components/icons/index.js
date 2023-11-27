@@ -1,3 +1,4 @@
+export * from './ArrowLeftIcon';
 export * from './BarsIcon';
 export * from './CalendarIcon';
 export * from './ChartIcon';
