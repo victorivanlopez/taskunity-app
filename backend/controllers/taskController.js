@@ -18,7 +18,7 @@ export const createTask = async (req, res) => {
 
     projectAssigned.tasks.push(task._id);
     await projectAssigned.save();
-    return res.status(201).json({ message: 'Tarea creada con éxito.', task });
+    return res.json(task);
   } catch (error) {
     if (error.kind === 'ObjectId') {
       const { message } = new Error('El proyecto asignado es incorrecto.');
