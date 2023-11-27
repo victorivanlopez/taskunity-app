@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Alert } from '../../components';
 import { useForm, useTaskUnityContext } from '../../hooks';
-import { CollaboratorResult } from './CollaboratorResult';
-import { Spinner } from './Spinner';
+import { CollaboratorResult, Spinner } from './';
 
 export const FormCollaborator = () => {
 
@@ -51,14 +50,14 @@ export const FormCollaborator = () => {
             name='email'
             value={email}
             onChange={onInputChange}
-            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
+            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-taskunity-400 focus-visible:shadow-none py-3 px-5"
           />
         </div>
 
         <div>
           <button
             type="submit"
-            className="w-full cursor-pointer rounded-md border bg-[#423F98] py-3 px-5 text-base text-white font-bold transition-colors hover:bg-opacity-90 disabled:bg-opacity-50"
+            className="w-full cursor-pointer rounded-md border bg-taskunity-800 py-3 px-5 text-base text-white font-bold transition-colors hover:bg-opacity-90 disabled:bg-opacity-50"
             disabled={isLoading}
           >
             Buscar colaborador

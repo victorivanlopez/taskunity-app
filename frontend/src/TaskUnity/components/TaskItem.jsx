@@ -51,7 +51,7 @@ export const TaskItem = ({ task }) => {
                 <li>
                   <button
                     type='button'
-                    className='hover:text-[#423F98] transition-colors'
+                    className='hover:text-taskunity-800 transition-colors'
                     onClick={() => onModalEditingTask(task)}
                   >
                     <EditIcon />

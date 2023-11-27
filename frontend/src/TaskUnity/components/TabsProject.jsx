@@ -14,8 +14,8 @@ export const TabsProject = () => {
             classNames(
               'flex w-60 justify-center gap-2 py-4 font-semibold transition-colors duration-300 mx-1 focus:outline-none',
               selected
-                ? 'border-b-2 border-[#423F98] text-[#423F98]'
-                : 'hover:text-[#423F98] border-b-2 hover:border-[#423F98] text-[#545454]'
+                ? 'border-b-2 border-taskunity-800 text-taskunity-800'
+                : 'hover:text-taskunity-800 border-b-2 hover:border-taskunity-800 text-[#545454]'
             )
           }
           >
@@ -26,8 +26,8 @@ export const TabsProject = () => {
             classNames(
               'flex w-60 justify-center gap-2 py-4 font-semibold transition-colors duration-300 mx-1 focus:outline-none',
               selected
-                ? 'border-b-2 border-[#423F98] text-[#423F98]'
-                : 'hover:text-[#423F98] border-b-2 hover:border-[#423F98] text-[#545454]'
+                ? 'border-b-2 border-taskunity-800 text-taskunity-800'
+                : 'hover:text-taskunity-800 border-b-2 hover:border-taskunity-800 text-[#545454]'
             )
           }
           >

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const HeaderLanding = () => {
   return (
-    <header className='bg-[#EAF1F7] border-[#423F98] border-b'>
+    <header className='bg-taskunity-50 border-taskunity-400 border-b'>
       <nav className="max-w-6xl mx-auto">
         <div className="flex flex-wrap items-center justify-center md:justify-between gap-6 md:gap-0 py-4 mx-4 lg:px-0">
           <Link to={'/'}>
@@ -21,7 +21,7 @@ export const HeaderLanding = () => {
             <li>
               <Link
                 to='/auth/register'
-                className='w-max rounded-lg border bg-[#423F98] px-4 py-2 text-base text-white font-bold transition-colors hover:bg-opacity-90'
+                className='w-max rounded-lg border bg-taskunity-800 px-4 py-2 text-base text-white font-bold transition-colors hover:bg-opacity-90'
               >
                 <span>Regístrate</span>
               </Link>

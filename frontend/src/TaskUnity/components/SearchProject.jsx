@@ -55,7 +55,7 @@ export const SearchProject = () => {
                   <Combobox.Option
                     key={project._id}
                     className={({ active }) =>
-                      `relative cursor-pointer select-none py-2 pl-10 pr-4 ${active ? 'bg-[#423F98] text-white' : 'text-gray-900'
+                      `relative cursor-pointer select-none py-2 pl-10 pr-4 ${active ? 'bg-taskunity-800 text-white' : 'text-gray-900'
                       }`
                     }
                     value={project}

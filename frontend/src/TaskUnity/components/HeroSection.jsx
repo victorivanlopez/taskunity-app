@@ -10,7 +10,7 @@ export const HeroSection = () => {
             <p className='text-lg my-6'> Organiza tareas, colabora en tiempo real y alcanza tus metas más rápido que nunca.</p>
             <Link
               to='/auth/register'
-              className='block w-max rounded-lg border bg-[#423F98] px-4 py-2 text-base text-white font-bold transition-colors hover:bg-opacity-90'
+              className='block w-max rounded-lg border bg-taskunity-800 px-4 py-2 text-base text-white font-bold transition-colors hover:bg-opacity-90'
             >
               <span>Listo para empezar</span>
             </Link>

@@ -30,7 +30,7 @@ export const SidebarAdmin = () => {
     <>
       <button
         type="button"
-        className="absolute top-4 z-50 p-2 mt-2 ml-3 text-sm text-[#423F98] rounded-lg sm:hidden focus:outline-none focus:ring-2 focus:ring-[#EAF1F7]"
+        className="absolute top-4 z-50 p-2 mt-2 ml-3 text-sm text-taskunity-800 rounded-lg sm:hidden focus:outline-none focus:ring-2 focus:ring-[#EAF1F7]"
         onClick={showSidebar}
       >
         <BarsIcon styles='w-7 h-7' />
@@ -38,12 +38,12 @@ export const SidebarAdmin = () => {
 
       </button>
 
-      <aside ref={sidebar} className="fixed z-10 top-0 pt-32 md:pt-20 left-0 w-64 h-screen bg-[#EAF1F7] transition-transform duration-500 -translate-x-full md:translate-x-0 shadow" aria-label="Sidebar">
-        <div className="h-full px-6 py-6 overflow-y-auto bg-[#EAF1F7]">
+      <aside ref={sidebar} className="fixed z-10 top-0 pt-32 md:pt-20 left-0 w-64 h-screen bg-taskunity-50 transition-transform duration-500 -translate-x-full md:translate-x-0 shadow" aria-label="Sidebar">
+        <div className="h-full px-6 py-6 overflow-y-auto bg-taskunity-50">
           <ul className="space-y-2 font-medium">
             <li>
               <NavLink
-                className={({ isActive }) => `${isActive ? 'bg-[#423F98] text-white' : ''} flex items-center gap-2 p-2 rounded-lg hover:bg-[#423F98] text-[#545454] hover:text-white transition-colors w-full`}
+                className={({ isActive }) => `${isActive ? 'bg-taskunity-800 text-white' : ''} flex items-center gap-2 p-2 rounded-lg hover:bg-taskunity-800 text-[#545454] hover:text-white transition-colors w-full`}
                 to="/dashboard"
                 onClick={hiddenSidebar}
               >
@@ -53,7 +53,7 @@ export const SidebarAdmin = () => {
             </li>
             <li>
               <NavLink
-                className={({ isActive }) => `${isActive ? 'bg-[#423F98] text-white' : ''} flex items-center gap-2 p-2 rounded-lg hover:bg-[#423F98] text-[#545454] hover:text-white transition-colors w-full`}
+                className={({ isActive }) => `${isActive ? 'bg-taskunity-800 text-white' : ''} flex items-center gap-2 p-2 rounded-lg hover:bg-taskunity-800 text-[#545454] hover:text-white transition-colors w-full`}
                 to="/projects"
                 onClick={hiddenSidebar}
               >
@@ -67,7 +67,7 @@ export const SidebarAdmin = () => {
             <li>
               <button
                 type='button'
-                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#423F98] text-[#545454] hover:text-white transition-colors w-full"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-taskunity-800 text-[#545454] hover:text-white transition-colors w-full"
                 onClick={onLogout}
               >
                 <LogoutIcon />

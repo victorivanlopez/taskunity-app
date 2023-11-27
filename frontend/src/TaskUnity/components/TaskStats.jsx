@@ -33,8 +33,8 @@ export const TaskStats = () => {
         label: 'Tarea(s)',
         data: taskStats,
         backgroundColor: [
-          '#423F98',
-          '#B0A6EB',
+          '#383877',
+          '#e4eafb',
         ],
       },
     ],

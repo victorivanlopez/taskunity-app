@@ -25,7 +25,7 @@ export const ConfirmAccountPage = () => {
 
   return (
     <>
-      <h1 className="text-2xl text-center font-bold uppercase">Confirma tu cuenta para <span className="text-[#423F98]">administrar tus proyectos</span></h1>
+      <h1 className="text-2xl text-center font-bold uppercase">Confirma tu cuenta para <span className="text-taskunity-800">administrar tus proyectos</span></h1>
 
       {
         (alert?.message) && <Alert alert={alert} />
@@ -36,7 +36,7 @@ export const ConfirmAccountPage = () => {
           <div className='mt-5 flex flex-col justify-center items-center'>
             <Link
               to='/auth/login'
-              className='text-[#423F98] underline font-bold'
+              className='text-taskunity-800 underline font-bold'
             >
               Inicia Sesión
             </Link>

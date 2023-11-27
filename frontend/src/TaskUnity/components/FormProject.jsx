@@ -80,7 +80,7 @@ export const FormProject = () => {
             name='name'
             value={name}
             onChange={onInputChange}
-            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
+            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-taskunity-400 focus-visible:shadow-none py-3 px-5"
           />
         </div>
         <div className="mb-5">
@@ -94,7 +94,7 @@ export const FormProject = () => {
             name='description'
             value={description}
             onChange={onInputChange}
-            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
+            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-taskunity-400 focus-visible:shadow-none py-3 px-5"
           />
         </div>
 
@@ -111,7 +111,7 @@ export const FormProject = () => {
             min={getCurrentDate()}
             value={deadline}
             onChange={onInputChange}
-            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
+            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-taskunity-400 focus-visible:shadow-none py-3 px-5"
           />
         </div>
 
@@ -127,13 +127,13 @@ export const FormProject = () => {
             name='client'
             value={client}
             onChange={onInputChange}
-            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-[#B0A6EB] focus-visible:shadow-none py-3 px-5"
+            className="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] outline-none focus:border-taskunity-400 focus-visible:shadow-none py-3 px-5"
           />
         </div>
 
         <div>
           <button
-            className="w-full cursor-pointer rounded-md border bg-[#423F98] py-3 px-5 text-base text-white font-bold transition-colors hover:bg-opacity-90"
+            className="w-full cursor-pointer rounded-md border bg-taskunity-800 py-3 px-5 text-base text-white font-bold transition-colors hover:bg-opacity-90"
             type="submit"
           >
             {id ? 'Guardar cambios' : 'Crear proyecto'}
