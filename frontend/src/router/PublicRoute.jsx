@@ -8,6 +8,6 @@ export const PublicRoute = ({ children }) => {
   if (isLoading) return;
 
   return (auth?.user)
-    ? <Navigate to="/dashboard" />
+    ? <Navigate to="/projects" />
     : children
 }
