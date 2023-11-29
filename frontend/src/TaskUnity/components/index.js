@@ -1,6 +1,7 @@
 export * from './AlertDeleteCollaborator';
 export * from './AlertDeleteProject';
 export * from './AlertDeleteTask';
+export * from './BenefitsSection';
 export * from './CollaboratorItem';
 export * from './CollaboratorResult';
 export * from './CollaboratorsList';
@@ -26,3 +27,4 @@ export * from './TabsProjectCollaborator';
 export * from './TaskItem';
 export * from './TaskStats';
 export * from './TasksList';
+export * from './icons';
