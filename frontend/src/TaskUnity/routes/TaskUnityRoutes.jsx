@@ -2,6 +2,8 @@ import {
   DashboardPage,
   ProjectsPage,
   ProjectPage,
+  LandingPage,
+  PrivacyPage,
 } from '../pages';
 
 export const DashboardRoutes = [
@@ -19,5 +21,16 @@ export const ProjectsRoutes = [
   {
     path: ':id',
     element: <ProjectPage />
+  },
+]
+
+export const LandingRoutes = [
+  {
+    index: true,
+    element: <LandingPage />
+  },
+  {
+    path: 'privacy',
+    element: <PrivacyPage />
   },
 ]
