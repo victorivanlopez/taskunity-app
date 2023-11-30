@@ -6,6 +6,7 @@ export * from './CollaboratorItem';
 export * from './CollaboratorResult';
 export * from './CollaboratorsList';
 export * from './DaysRemaining';
+export * from './FooterLanding';
 export * from './FormCollaborator';
 export * from './FormProject';
 export * from './FormTask';
