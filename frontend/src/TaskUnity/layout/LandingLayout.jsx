@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { FooterLanding, HeaderLanding } from '../components';
 
 export const LandingLayout = () => {
@@ -7,6 +7,7 @@ export const LandingLayout = () => {
       <HeaderLanding />
       <Outlet />
       <FooterLanding />
+      <ScrollRestoration />
     </>
   )
 }
