@@ -1,29 +1,29 @@
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { AuthLayout } from '../auth/layout/AuthLayout';
-import { AdminLayout } from '../TaskUnity/layout/AdminLayout';
+import { AdminLayout, LandingLayout } from '../TaskUnity/layout';
 import AuthRoutes from '../auth/routes/AuthRoutes';
-import { DashboardRoutes, ProjectsRoutes } from '../TaskUnity/routes/TaskUnityRoutes';
-import { ErrorPage, LandingPage } from '../TaskUnity/pages';
+import { DashboardRoutes, ProjectsRoutes, LandingRoutes } from '../TaskUnity/routes/TaskUnityRoutes';
+import { ErrorPage } from '../TaskUnity/pages';
 
 const AppRouter = [
   {
     path: '/',
     element:
       <PublicRoute>
-        <LandingPage />
+        <LandingLayout />
       </PublicRoute>,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
+    children: LandingRoutes,
   },
-
   {
     path: '/auth',
     element:
       <PublicRoute>
         <AuthLayout />
       </PublicRoute>,
+    errorElement: <ErrorPage />,
     children: AuthRoutes,
-    errorElement: <ErrorPage />
   },
   {
     path: '/dashboard',
@@ -31,7 +31,7 @@ const AppRouter = [
       <PrivateRoute>
         <AdminLayout />
       </PrivateRoute>,
-    children: DashboardRoutes
+    children: DashboardRoutes,
   },
   {
     path: '/projects',
@@ -39,7 +39,7 @@ const AppRouter = [
       <PrivateRoute>
         <AdminLayout />
       </PrivateRoute>,
-    children: ProjectsRoutes
+    children: ProjectsRoutes,
   },
 ]
 
