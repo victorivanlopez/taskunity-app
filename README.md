@@ -8,3 +8,8 @@
 - Tailwind CSS for interface styles.
 - Data Fetching with SWR.
 - HTTP Client Axios.
+
+## Preview
+| **Home** |
+| :-------------: |
+| ![Home Page](https://i.imgur.com/NMdYndU.png) |
