@@ -13,3 +13,15 @@
 | **Home** |
 | :-------------: |
 | ![Home Page](https://i.imgur.com/NMdYndU.png) |
+
+| **Login Page** |
+| :-------------: |
+| ![Login Page](https://i.imgur.com/GBt453Q.png) |
+
+| **Dashboard Page** |
+| :-------------: |
+| ![Dashboard Page](https://i.imgur.com/dXBHuvb.png) |
+
+| **Tasks Page** |
+| :-------------: |
+| ![Tasks Page](https://i.imgur.com/Apc01CU.png) |
