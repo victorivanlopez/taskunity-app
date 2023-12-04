@@ -24,4 +24,4 @@
 
 | **Tasks Page** |
 | :-------------: |
-| ![Tasks Page](https://i.imgur.com/Apc01CU.png) |
+| ![Tasks Page](https://i.imgur.com/aNuoOv2.png) |
