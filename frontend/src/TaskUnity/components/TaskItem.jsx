@@ -46,7 +46,7 @@ export const TaskItem = ({ task }) => {
               </button>
             </li>
             {
-              (isAdmin && !isCompleted) &&
+              (isAdmin) &&
               <>
                 <li>
                   <button
