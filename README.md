@@ -1,6 +1,14 @@
 # TaskUnity | MERN Stack - React Router DOM - Socket.IO - Tailwind CSS - Vite
 
-## Description
+## Table of Contents 📘
+
+1. [Description](#description-)
+2. [Preview](#preview-)
+3. [Installation](#installation-)
+4. [Built with](#built-with-)
+
+
+## Description 📝
 - Development with MERN Stack.
 - Authentication with JWT.
 - User creation and collaboration.
@@ -13,7 +21,7 @@
 - Sending email with Nodemailer.
 - HTTP Client Axios.
 
-## Preview
+## Preview 💻
 | **Home** |
 | :-------------: |
 | ![Home Page](https://i.imgur.com/NMdYndU.png) |
@@ -30,7 +38,7 @@
 | :-------------: |
 | ![Tasks Page](https://i.imgur.com/aNuoOv2.png) |
 
-## Built with
+## Built with 🛠️
 
 - [React V18](https://es.react.dev/)
 - [Express V4.18](https://expressjs.com/es/)
@@ -46,3 +54,5 @@
 - [JWT V9](https://jwt.io/)
 - [Nodemailer V6](https://nodemailer.com/)
 - [Vite V4](https://vitejs.dev)
+
+**[⬆ back to top](#table-of-contents-)**
