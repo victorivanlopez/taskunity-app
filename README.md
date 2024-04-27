@@ -4,8 +4,7 @@
 
 1. [Description](#description-)
 2. [Preview](#preview-)
-3. [Installation](#installation-)
-4. [Built with](#built-with-)
+3. [Built with](#built-with-%EF%B8%8F)
 
 
 ## Description 📝
